@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ELARIS</title>
 <link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:ital,wdth,wght@0,75..125,400;0,75..125,500;0,75..125,600;0,75..125,700;0,75..125,800;1,75..125,400&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================
    ELARIS — EMBER DARKNESS
@@ -54,16 +57,19 @@
   --ez:cubic-bezier(.22,.8,.24,1);
 }
 *{box-sizing:border-box;-webkit-font-smoothing:antialiased}
-html,body{height:100%;margin:0;background:var(--soot);overflow:hidden}
-body{font-family:var(--lore);color:var(--ivory);font-size:16px}
-::selection{background:rgba(140,47,28,.45)}
+html,body{height:100%;margin:0;background:#08080B;overflow:hidden}
+body{font-family:"Newsreader","Iowan Old Style",Palatino,Georgia,serif;
+  color:#EDE7DA;font-size:16px}
+::selection{background:rgba(217,77,41,.42);color:#fff}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 h1,h2,h3,h4{margin:0;font-weight:400;letter-spacing:.02em}
 img{display:block}
-.fn{font-family:var(--ui);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory-3)}
-.fn2{font-family:var(--ui);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory-4)}
-.li{font-style:italic;color:rgba(216,205,184,.4)}
-.num{font-family:var(--ui);font-variant-numeric:tabular-nums}
+.fn{font-family:var(--e-grotesk);font-size:10px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--e-paper-3)}
+.fn2{font-family:var(--e-grotesk);font-size:9px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.li{font-family:var(--e-serif);font-style:italic;color:var(--e-paper-3)}
+.num{font-family:var(--e-grotesk);font-variant-numeric:tabular-nums;font-weight:600}
 
 /* ---------- atmosphere layers ---------- */
 #grain,#vig{position:fixed;inset:0;pointer-events:none;z-index:960}
@@ -113,15 +119,18 @@ body.reduced *{animation-duration:.001s!important;transition-duration:.12s!impor
 @keyframes sp{to{transform:rotate(360deg)}}
 
 /* ---------- ritual affordances ---------- */
-.rite{display:inline-flex;align-items:center;gap:12px;padding:14px 28px;border:1px solid rgba(216,205,184,.16);
-  background:rgba(12,11,11,.5);font-family:var(--ui);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--ivory-2);position:relative;overflow:hidden;transition:.85s var(--ez)}
-.rite:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(140,47,28,.32),transparent);transform:translateX(-100%);transition:transform 1.3s var(--ez)}
-.rite:hover{color:var(--ivory);border-color:rgba(107,73,52,.65)}
-.rite:hover:before{transform:translateX(100%)}
+/* the ritual button, restruck in the editorial voice */
+.rite{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;
+  border:1px solid var(--e-rule-2);background:transparent;
+  font-family:var(--e-grotesk);font-size:10.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-2);position:relative;overflow:hidden;
+  transition:color var(--e-fast) var(--e-ez),border-color var(--e-fast) var(--e-ez),
+    background var(--e-fast) var(--e-ez)}
+.rite:hover{color:var(--e-paper);border-color:var(--e-oxide);background:var(--e-oxide-wash)}
 .rite[disabled]{opacity:.28;pointer-events:none}
-.rite.grave{border-color:rgba(74,22,24,.7)}
-:focus-visible{outline:1px solid rgba(216,205,184,.6);outline-offset:4px}
+.rite.grave{border-color:var(--e-rule-hot);color:var(--e-oxide-lt)}
+.rite.grave:hover{background:var(--e-oxide);color:#0B0B0F;border-color:var(--e-oxide)}
+:focus-visible{outline:1px solid var(--e-oxide);outline-offset:3px}
 
 /* ============================================================
    00 LOADING — the vault wakes before you do
@@ -156,7 +165,7 @@ body.reduced *{animation-duration:.001s!important;transition-duration:.12s!impor
 .ldline{font-size:15.5px;color:rgba(216,205,184,.62);font-style:italic;min-height:24px;
   transition:opacity .6s var(--ez)}
 .ldline.out{opacity:0}
-.ldpct{font-family:var(--ui);font-size:11px;letter-spacing:.16em;color:rgba(216,205,184,.34)}
+.ldpct{font-family:var(--ui);font-size:11px;font-weight:400;letter-spacing:.16em;color:rgba(216,205,184,.34)}
 .ldskip{margin-top:34px;opacity:0;transition:opacity 1.2s var(--ez);pointer-events:none}
 .ldskip.show{opacity:1;pointer-events:auto}
 .ldskip button{font-family:var(--ui);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
@@ -293,34 +302,77 @@ body.reduced #ground video{display:none}
 #hush{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;transition:opacity 1.4s var(--ez);z-index:1}
 
 /* ============================================================
-   THE CARD — the supplied ELARIS artwork, used as-is
+   THE CARD — a typeset specimen plate.
+   Every record is a printed page: ruled frame, engraved figure,
+   set name, and a footer of measurements. Art is generated per
+   card from its own id, so no two plates repeat.
    ============================================================ */
 .card{
-  position:relative;aspect-ratio:853/1280;cursor:pointer;overflow:hidden;border-radius:6px;
-  background:#0a0a0c center/cover no-repeat;
-  background-image:url(cards/liora.jpg);
-  border:1px solid rgba(198,166,100,.3);
+  position:relative;aspect-ratio:853/1280;cursor:pointer;overflow:hidden;border-radius:0;
+  background:var(--e-plate);
+  border:1px solid var(--e-rule);
   box-shadow:0 10px 26px -14px #000;
-  transition:transform .8s var(--ez),box-shadow .8s var(--ez),filter .8s var(--ez),border-color .8s var(--ez);
-  filter:brightness(.9) saturate(.95);
+  display:flex;flex-direction:column;
+  transition:transform var(--e-mid) var(--e-ez-out),box-shadow var(--e-mid) var(--e-ez),
+    border-color var(--e-mid) var(--e-ez),filter var(--e-mid) var(--e-ez);
+  filter:saturate(.94);
+  container-type:inline-size;
 }
-.card:hover{filter:brightness(1.05) saturate(1);transform:translateY(-9px);
-  border-color:rgba(214,184,120,.8);
-  box-shadow:0 34px 56px -28px #000,0 0 40px -14px var(--ag,rgba(140,47,28,.5))}
-.card.sm{background-image:url(cards/liora-sm.jpg)}
-.card:before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;
-  transition:opacity 1s var(--ez);
-  background:radial-gradient(120% 70% at 50% 112%,var(--ag,rgba(140,47,28,.5)),transparent 62%)}
-.card:hover:before{opacity:1}
-.card:after{content:"";position:absolute;top:-60%;left:-90%;width:60%;height:220%;z-index:4;
-  pointer-events:none;background:linear-gradient(96deg,transparent,rgba(255,244,214,.16),transparent);
-  transform:rotate(14deg);transition:left 1.1s var(--ez)}
+.card:hover{transform:translateY(-9px);border-color:var(--fi,var(--e-oxide));
+  box-shadow:0 34px 56px -28px #000,0 0 40px -18px var(--fi,var(--e-oxide-glow))}
+/* the printed rule inset — a plate has a border inside its border */
+.card .plate-rule{position:absolute;inset:5px;border:1px solid var(--e-paper-5);
+  pointer-events:none;z-index:5}
+/* header: set mark + aether cost */
+.card .c-top{position:relative;z-index:4;display:flex;align-items:flex-start;
+  justify-content:space-between;gap:4px;padding:11px 12px 0}
+.card .c-set{font-family:var(--e-grotesk);font-size:6.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-4);line-height:1.3}
+.card .c-cost{font-family:var(--e-display);font-size:20px;font-weight:500;line-height:1;
+  color:var(--e-paper);text-shadow:0 1px 6px #000}
+/* the figure: generated engraving, unique per record */
+.card .c-fig{position:relative;flex:1;margin:8px 10px 0;overflow:hidden;
+  background:radial-gradient(70% 60% at 50% 42%,var(--fw,rgba(217,77,41,.1)),transparent 72%),
+    linear-gradient(180deg,var(--e-ink),var(--e-void));
+  border:1px solid var(--e-paper-5)}
+.card .c-fig svg{position:absolute;inset:0;width:100%;height:100%}
+/* nameplate: the caption block */
+.card .c-name{position:relative;z-index:4;padding:9px 11px 0;
+  font-family:var(--e-display);font-weight:400;font-size:12.5px;line-height:1.12;
+  color:var(--e-paper);letter-spacing:-.01em;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .c-role{position:relative;z-index:4;padding:5px 11px 0;
+  font-family:var(--e-grotesk);font-size:6.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fi,var(--e-paper-4));
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* footer: the measurements, as a ruled table */
+.card .c-foot{position:relative;z-index:4;margin:8px 10px 10px;padding-top:6px;
+  border-top:1px solid var(--e-paper-5);display:flex;align-items:baseline;gap:6px}
+.card .c-foot .st{font-family:var(--e-grotesk);font-size:6px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.card .c-foot .vv{font-family:var(--e-display);font-size:14px;font-weight:500;color:var(--e-paper);
+  line-height:1;margin-left:-2px}
+.card .c-foot .sp{flex:1}
+.card .c-rar{font-family:var(--e-grotesk);font-size:8px;color:var(--e-paper-3);letter-spacing:.1em}
+/* scale everything with the plate so small cards stay legible */
+@container (max-width:150px){
+  .card .c-name{font-size:10.5px;padding-top:7px}
+  .card .c-cost{font-size:16px}
+  .card .c-foot .vv{font-size:11.5px}
+}
+/* the raking light that crosses the plate on hover */
+.card:after{content:"";position:absolute;top:-60%;left:-90%;width:60%;height:220%;z-index:6;
+  pointer-events:none;background:linear-gradient(96deg,transparent,rgba(255,246,228,.10),transparent);
+  transform:rotate(14deg);transition:left 1.1s var(--e-ez)}
 .card:hover:after{left:130%}
-.card .own{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);z-index:6;
-  font-family:var(--ui);font-size:10px;letter-spacing:.1em;color:rgba(240,230,205,.9);
-  background:rgba(6,5,5,.8);border:1px solid rgba(198,166,100,.4);padding:2px 8px;border-radius:2px}
-.card.locked{filter:brightness(.28) saturate(0)}
-.card.locked:hover{filter:brightness(.45) saturate(.2)}
+.card .own{position:absolute;bottom:0;right:0;z-index:7;
+  font-family:var(--e-grotesk);font-size:8px;font-weight:700;letter-spacing:.1em;color:var(--e-paper);
+  background:var(--e-oxide);padding:3px 7px}
+.card.locked{filter:brightness(.4) saturate(0) contrast(.9)}
+.card.locked:hover{filter:brightness(.6) saturate(.25)}
+/* rarity: only the top tier earns a gilt rule */
+.card.r-M,.card.r-L{border-color:rgba(201,162,39,.4)}
+.card.r-M .plate-rule,.card.r-L .plate-rule{border-color:rgba(201,162,39,.3)}
 
 
 /* ============================================================
@@ -347,6 +399,124 @@ body.reduced #ground video{display:none}
   --bad:#b4633f;
 }
 
+/* ============================================================
+   EDITORIAL DARK FANTASY — the new design system
+   A printed folio at midnight. Didone display, oxide inks,
+   rules instead of boxes, asymmetry instead of grids.
+   Legacy tokens above are kept alive ONLY so the loading and
+   threshold ceremonies render exactly as they always have.
+   ============================================================ */
+:root{
+  /* --- grounds: pressed black to warm plate --- */
+  --e-void:#080604;
+  --e-ink:#120D09;
+  --e-plate:#1A120B;
+  --e-plate-2:#24180E;
+  --e-raise:#302014;
+
+  /* --- paper: foxed vellum under candlelight --- */
+  --e-paper:#E7D5AF;
+  --e-paper-2:rgba(231,213,175,.78);
+  --e-paper-3:rgba(231,213,175,.52);
+  --e-paper-4:rgba(231,213,175,.32);
+  --e-paper-5:rgba(231,213,175,.14);
+
+  /* --- rules: oxidised brass and faded ink --- */
+  --e-rule:rgba(194,153,88,.18);
+  --e-rule-2:rgba(194,153,88,.34);
+  --e-rule-hot:rgba(152,55,32,.66);
+
+  /* --- sealing wax: the only loud colour --- */
+  --e-oxide:#9B3823;
+  --e-oxide-lt:#C45B38;
+  --e-oxide-dk:#5B1D12;
+  --e-oxide-wash:rgba(155,56,35,.14);
+  --e-oxide-glow:rgba(155,56,35,.42);
+
+  /* --- physical cabinet materials --- */
+  --e-brass:#B08A4E;
+  --e-brass-lt:#D0B072;
+  --e-walnut:#21140B;
+  --e-walnut-lt:#382316;
+  --e-vellum:#CDBB96;
+  --e-ink-brown:#2A1B10;
+
+  /* --- faction inks: printer's inks, muted and dense --- */
+  --e-civ:#5B8CB8;   --e-civ-wash:rgba(91,140,184,.12);
+  --e-war:#C4483A;   --e-war-wash:rgba(196,72,58,.12);
+  --e-nat:#7B9A55;   --e-nat-wash:rgba(123,154,85,.12);
+  --e-drk:#8A6BB5;   --e-drk-wash:rgba(138,107,181,.12);
+
+  /* --- signal --- */
+  --e-good:#7B9A55;
+  --e-warn:#C89A3C;
+  --e-bad:#C4483A;
+  --e-gild:#C9A227;
+
+  /* --- type --- */
+  --e-display:"Bodoni Moda","Didot","Bodoni MT","Playfair Display",Georgia,serif;
+  --e-serif:"Newsreader","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --e-grotesk:"Archivo","Inter",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+
+  /* --- measure & rhythm --- */
+  --e-gut:clamp(18px,2.2vw,34px);
+  --e-pad:clamp(20px,3.4vw,58px);
+
+  /* --- motion --- */
+  --e-ez:cubic-bezier(.22,.9,.24,1);
+  --e-ez-out:cubic-bezier(.16,1,.3,1);
+  --e-fast:.22s;
+  --e-mid:.5s;
+  --e-slow:.9s;
+}
+
+/* accessibility switches that actually do something now */
+body.hicon{
+  --e-paper-2:rgba(255,252,246,.94);
+  --e-paper-3:rgba(255,252,246,.78);
+  --e-paper-4:rgba(255,252,246,.56);
+  --e-rule:rgba(255,252,246,.34);
+  --e-rule-2:rgba(255,252,246,.5);
+}
+body.big{font-size:18.5px}
+body.big .e-lab,body.big .e-meta{font-size:11.5px}
+
+/* faction ink resolver — one class, four inks */
+.f-Civilization{--fi:var(--e-civ);--fw:var(--e-civ-wash)}
+.f-Warfare{--fi:var(--e-war);--fw:var(--e-war-wash)}
+.f-Nature{--fi:var(--e-nat);--fw:var(--e-nat-wash)}
+.f-Dark{--fi:var(--e-drk);--fw:var(--e-drk-wash)}
+
+/* ---------- editorial primitives ---------- */
+/* the standing head: a rule, a word, a rule */
+.e-lab{font-family:var(--e-grotesk);font-size:10px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.e-meta{font-family:var(--e-grotesk);font-size:11.5px;font-weight:400;color:var(--e-paper-3);
+  font-variant-numeric:tabular-nums}
+.e-num{font-family:var(--e-grotesk);font-variant-numeric:tabular-nums;font-weight:600}
+.e-drop{font-family:var(--e-display);font-weight:400}
+
+/* section rule with a hanging label */
+.e-head{display:flex;align-items:baseline;gap:16px;margin-bottom:18px}
+.e-head .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--e-rule),transparent)}
+
+/* the standard editorial button: a ruled word, not a pill */
+.e-act{position:relative;display:inline-flex;align-items:center;gap:10px;padding:13px 26px;
+  font-family:var(--e-grotesk);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--e-paper-2);background:transparent;border:1px solid var(--e-rule-2);cursor:pointer;
+  transition:color var(--e-fast) var(--e-ez),border-color var(--e-fast) var(--e-ez),
+    background var(--e-fast) var(--e-ez)}
+.e-act:before{content:"";position:absolute;inset:0;background:var(--e-oxide);
+  transform:scaleY(0);transform-origin:bottom;transition:transform var(--e-mid) var(--e-ez-out);z-index:-1}
+.e-act:hover{color:var(--e-paper);border-color:var(--e-oxide)}
+.e-act:hover:before{transform:scaleY(1)}
+.e-act[disabled]{opacity:.3;pointer-events:none}
+.e-act.solid{background:var(--e-oxide);border-color:var(--e-oxide);color:#0B0B0F}
+.e-act.solid:hover{background:var(--e-oxide-lt);border-color:var(--e-oxide-lt);color:#0B0B0F}
+.e-act.quiet{border-color:transparent;padding-left:0;padding-right:0;color:var(--e-paper-3)}
+.e-act.quiet:hover{color:var(--e-oxide-lt);background:transparent}
+.e-act.quiet:before{display:none}
+
 
 
 /* ============================================================
@@ -355,39 +525,68 @@ body.reduced #ground video{display:none}
    orange action. All energy from the card art and the crest.
    ============================================================ */
 
-/* ---------- shared entry furniture ---------- */
-.e-wrap{position:absolute;inset:0;display:grid;place-items:center;padding:28px;overflow:auto}
-.e-panel{width:min(440px,94vw);background:var(--panel);border:1px solid var(--line);
-  border-radius:16px;padding:34px 32px 28px;text-align:center;
-  box-shadow:0 40px 90px -34px #000}
-.e-crest{width:56px;height:56px;margin:0 auto 18px;color:var(--gold);opacity:.95}
-.e-title{font-family:var(--ui);font-size:21px;font-weight:700;color:#fff;letter-spacing:-.01em}
-.e-sub{font-family:var(--ui);font-size:13.5px;color:var(--text-dim);margin-top:8px;line-height:1.55}
-.e-field{margin-top:20px;text-align:left}
-.e-field label{display:block;font-family:var(--ui);font-size:11px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--label);margin-bottom:8px}
-.e-input{width:100%;background:#0E0F13;border:1px solid var(--line);border-radius:10px;outline:0;
-  padding:13px 14px;font-family:var(--ui);font-size:15px;font-weight:500;color:#fff;
-  transition:.18s ease-out}
-.e-input::placeholder{color:#4a505c;font-weight:400}
-.e-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.14)}
-.e-hint{font-family:var(--ui);font-size:11.5px;color:var(--text-dim);margin-top:9px;min-height:15px}
-.e-err{font-family:var(--ui);font-size:12px;color:#ff7a5c;margin-top:10px;min-height:16px;text-align:left}
-.e-cta{margin-top:20px;width:100%;padding:14px;border-radius:10px;cursor:pointer;border:0;
-  font-family:var(--ui);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--cyan);background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.42);
-  transition:.18s ease-out}
-.e-cta:hover:not([disabled]){background:rgba(0,229,255,.17);border-color:var(--cyan);
-  box-shadow:0 0 18px -6px rgba(0,229,255,.6)}
+/* ---------- shared entry furniture — editorial title spread ----------
+   Not a centred card. A two-column folio: a standing display headline
+   on the left, the form hanging on a rule to the right.               */
+.e-wrap{position:absolute;inset:0;display:grid;place-items:center;
+  padding:clamp(20px,5vw,70px);overflow:auto}
+.e-panel{width:min(1020px,100%);display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(28px,5vw,72px);align-items:center;text-align:left;
+  background:transparent;border:0;padding:0;box-shadow:none;
+  animation:eFolio 1.1s var(--e-ez-out) both}
+@keyframes eFolio{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+/* left column: crest, folio number, huge didone headline */
+.e-lede{min-width:0}
+.e-crest{width:52px;height:52px;margin:0 0 22px;color:var(--e-oxide);opacity:.92}
+.e-folio{font-family:var(--e-grotesk);font-size:9.5px;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--e-paper-4);margin-bottom:16px}
+.e-title{font-family:var(--e-display);font-weight:400;
+  font-size:clamp(38px,5.6vw,74px);line-height:.94;letter-spacing:-.02em;
+  color:var(--e-paper);text-wrap:balance}
+.e-title em{font-style:italic;color:var(--e-oxide-lt)}
+.e-sub{font-family:var(--e-serif);font-size:clamp(15px,1.5vw,18px);font-style:italic;
+  color:var(--e-paper-3);margin-top:20px;line-height:1.6;max-width:38ch;
+  padding-top:20px;border-top:1px solid var(--e-rule)}
+/* right column: the working form, hung on a vertical rule */
+.e-form{border-left:1px solid var(--e-rule);padding-left:clamp(22px,3vw,42px);min-width:0}
+.e-field{margin-top:22px;text-align:left}
+.e-field:first-child{margin-top:0}
+.e-field label{display:block;font-family:var(--e-grotesk);font-size:9.5px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--e-paper-4);margin-bottom:10px}
+/* inputs are ruled lines, never boxes */
+.e-input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--e-rule-2);
+  border-radius:0;outline:0;padding:10px 2px 12px;
+  font-family:var(--e-display);font-size:24px;font-weight:400;color:var(--e-paper);
+  transition:border-color var(--e-fast) var(--e-ez),background var(--e-fast) var(--e-ez)}
+.e-input::placeholder{color:var(--e-paper-5);font-size:19px;font-style:italic}
+.e-input:focus{border-bottom-color:var(--e-oxide);
+  background:linear-gradient(180deg,transparent 60%,var(--e-oxide-wash))}
+.e-hint{font-family:var(--e-grotesk);font-size:11px;color:var(--e-paper-4);margin-top:10px;min-height:15px}
+.e-err{font-family:var(--e-grotesk);font-size:11.5px;font-weight:600;color:var(--e-bad);
+  margin-top:12px;min-height:16px;text-align:left}
+.e-cta{margin-top:30px;width:100%;padding:16px;border-radius:0;cursor:pointer;
+  font-family:var(--e-grotesk);font-size:11.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:#0B0B0F;background:var(--e-oxide);border:1px solid var(--e-oxide);
+  transition:background var(--e-fast) var(--e-ez),transform var(--e-fast) var(--e-ez),
+    box-shadow var(--e-fast) var(--e-ez)}
+.e-cta:hover:not([disabled]){background:var(--e-oxide-lt);border-color:var(--e-oxide-lt);
+  transform:translateY(-2px);box-shadow:0 14px 30px -16px var(--e-oxide)}
 .e-cta:active:not([disabled]){transform:translateY(0)}
-.e-cta[disabled]{opacity:.32;cursor:default;filter:grayscale(.6)}
-.e-ghost{margin-top:12px;width:100%;padding:12px;border-radius:10px;cursor:pointer;
-  background:transparent;border:1px solid var(--line);
-  font-family:var(--ui);font-size:12.5px;font-weight:600;color:var(--text-dim);transition:.18s ease-out}
-.e-ghost:hover{border-color:rgba(255,255,255,.2);color:#fff}
-.e-foot{font-family:var(--ui);font-size:12px;color:var(--text-dim);margin-top:16px}
-.e-foot a{color:var(--cyan);cursor:pointer;font-weight:600}
+.e-cta[disabled]{opacity:.24;cursor:default;background:transparent;color:var(--e-paper-4);
+  border-color:var(--e-rule)}
+.e-ghost{margin-top:12px;width:100%;padding:13px;border-radius:0;cursor:pointer;
+  background:transparent;border:1px solid var(--e-rule);
+  font-family:var(--e-grotesk);font-size:11px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--e-paper-3);transition:var(--e-fast) var(--e-ez)}
+.e-ghost:hover{border-color:var(--e-rule-2);color:var(--e-paper)}
+.e-foot{font-family:var(--e-grotesk);font-size:11.5px;color:var(--e-paper-4);margin-top:18px;line-height:1.6}
+.e-foot a{color:var(--e-oxide-lt);cursor:pointer;font-weight:600}
 .e-foot a:hover{text-decoration:underline}
+@media(max-width:860px){
+  .e-panel{grid-template-columns:1fr;gap:30px}
+  .e-form{border-left:0;padding-left:0;border-top:1px solid var(--e-rule);padding-top:26px}
+  .e-crest{margin-bottom:18px}
+}
 
 /* ---------- 01 THRESHOLD ---------- */
 #s-threshold{background:
@@ -412,287 +611,285 @@ body.reduced #ground video{display:none}
 
 /* ---------- 01b GATE ---------- */
 #s-gate{background:
-  radial-gradient(80% 60% at 50% 8%,rgba(30,42,51,.5),transparent 70%),
-  linear-gradient(180deg,#0b0d11,#0E0F13 55%,#08090c)}
-/* the returning player card — the loudest thing on this screen */
-.g-return{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;cursor:pointer;
-  background:var(--panel-2);border:1px solid rgba(0,229,255,.3);text-align:left;width:100%;
-  box-shadow:0 0 22px rgba(0,229,255,.14);transition:.2s ease-out;margin-bottom:18px}
-.g-return:hover{border-color:var(--cyan);box-shadow:0 0 30px rgba(0,229,255,.3);transform:translateY(-2px)}
-.g-return .av{position:relative;width:46px;height:46px;flex:0 0 auto}
-.g-return .av .face{position:absolute;inset:3px;border-radius:50%;background:#0E0F13;
-  display:grid;place-items:center;color:var(--gold)}
-.g-return .nm{font-family:var(--ui);font-size:15.5px;font-weight:700;color:#fff}
-.g-return .mt{font-family:var(--ui);font-size:11.5px;color:var(--text-dim);margin-top:3px}
-.g-return .go{margin-left:auto;font-family:var(--ui);font-size:11.5px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
-.g-or{display:flex;align-items:center;gap:12px;margin:4px 0 16px}
-.g-or:before,.g-or:after{content:"";flex:1;height:1px;background:var(--line)}
-.g-or span{font-family:var(--ui);font-size:10.5px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--label)}
-.g-tabs{display:flex;gap:6px;padding:4px;border-radius:11px;background:#0E0F13;
-  border:1px solid var(--line);margin-bottom:18px}
-.g-tab{flex:1;padding:10px;border-radius:8px;cursor:pointer;text-align:center;
-  font-family:var(--ui);font-size:12.5px;font-weight:700;color:var(--text-dim);transition:.18s ease-out}
-.g-tab:hover{color:#fff}
-.g-tab.on{background:rgba(0,229,255,.12);color:var(--cyan);box-shadow:inset 0 0 0 1px rgba(0,229,255,.3)}
+  radial-gradient(70% 55% at 22% 10%,rgba(217,77,41,.07),transparent 66%),
+  linear-gradient(180deg,rgba(8,8,11,.93),rgba(11,11,15,.88) 52%,rgba(6,6,9,.95))}
+/* the returning player: a bound ledger entry, not a glowing pill */
+.g-return{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:0;cursor:pointer;
+  background:linear-gradient(90deg,var(--e-oxide-wash),transparent 70%);
+  border:0;border-left:2px solid var(--e-oxide);text-align:left;width:100%;
+  transition:var(--e-fast) var(--e-ez);margin-bottom:22px}
+.g-return:hover{background:linear-gradient(90deg,rgba(217,77,41,.18),transparent 70%);
+  transform:translateX(4px)}
+.g-return .av{position:relative;width:44px;height:44px;flex:0 0 auto}
+.g-return .av .face{position:absolute;inset:3px;border-radius:50%;background:var(--e-ink);
+  display:grid;place-items:center;color:var(--e-oxide)}
+.g-return .nm{font-family:var(--e-display);font-size:22px;font-weight:400;color:var(--e-paper);line-height:1.1}
+.g-return .mt{font-family:var(--e-grotesk);font-size:11px;color:var(--e-paper-4);margin-top:4px;
+  letter-spacing:.04em}
+.g-return .go{margin-left:auto;font-family:var(--e-grotesk);font-size:10px;font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--e-oxide-lt);white-space:nowrap}
+.g-or{display:flex;align-items:center;gap:14px;margin:4px 0 18px}
+.g-or:before,.g-or:after{content:"";flex:1;height:1px;background:var(--e-rule)}
+.g-or span{font-family:var(--e-grotesk);font-size:9px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+/* tabs are a running head, underscored by a rule */
+.g-tabs{display:flex;gap:26px;padding:0;border-radius:0;background:transparent;
+  border:0;border-bottom:1px solid var(--e-rule);margin-bottom:8px}
+.g-tab{flex:0 0 auto;padding:0 0 12px;border-radius:0;cursor:pointer;text-align:left;position:relative;
+  font-family:var(--e-grotesk);font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--e-paper-4);transition:color var(--e-fast) var(--e-ez);background:none}
+.g-tab:hover{color:var(--e-paper-2)}
+.g-tab.on{background:transparent;color:var(--e-paper);box-shadow:none}
+.g-tab.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:var(--e-oxide)}
 
 /* ---------- 02 NAME ---------- */
 #s-covenant{background:
-  radial-gradient(80% 60% at 50% 12%,rgba(30,42,51,.5),transparent 70%),
-  linear-gradient(180deg,#0b0d11,#0E0F13 55%,#08090c)}
+  radial-gradient(70% 55% at 78% 12%,rgba(217,77,41,.07),transparent 66%),
+  linear-gradient(180deg,rgba(8,8,11,.93),rgba(11,11,15,.88) 52%,rgba(6,6,9,.95))}
 
-/* ---------- 03 PICK ---------- */
+/* ---------- 03 PICK — the plate index ----------
+   Six numbered plates on a shared baseline. Captions hang beneath,
+   as in a catalogue of specimens. No pills, no rounded boxes.      */
 #s-firstpack{background:
-  radial-gradient(90% 60% at 50% -6%,rgba(30,42,51,.5),transparent 70%),
-  linear-gradient(180deg,#0b0d11,#0E0F13 50%,#08090c)}
-.pick-head{position:absolute;top:5.5%;left:0;right:0;text-align:center;z-index:5}
-.pick-head .step{display:inline-block;font-family:var(--ui);font-size:10.5px;font-weight:800;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);
-  border:1px solid rgba(0,229,255,.32);border-radius:20px;padding:6px 15px;background:rgba(0,229,255,.09)}
-.pick-head h2{font-family:var(--ui);font-size:clamp(22px,2.8vw,31px);font-weight:800;
-  color:#fff;margin-top:14px;letter-spacing:-.01em}
-.pick-sub{font-family:var(--ui);font-size:14px;color:var(--text-dim);margin-top:8px}
-.pick-rail{position:absolute;inset:0;display:grid;place-items:center;padding:112px 20px 40px}
-.pick-row{display:flex;gap:18px;justify-content:center;align-items:flex-start;flex-wrap:wrap;max-width:1200px}
-.pick{position:relative;width:176px;cursor:pointer;border-radius:14px;padding:10px 10px 12px;
-  background:var(--panel);border:1px solid var(--line);
-  transition:transform .2s ease-out,border-color .2s ease-out,box-shadow .2s ease-out,opacity .5s}
-.pick:hover{transform:translateY(-6px);border-color:var(--pc,var(--cyan));
-  box-shadow:0 20px 40px -18px #000,0 0 28px -6px var(--pc,rgba(0,229,255,.5))}
-.pick.legendary{border-color:rgba(255,215,0,.5)}
-.pick.legendary:hover{border-color:var(--gold);box-shadow:0 20px 40px -18px #000,0 0 26px rgba(255,215,0,.35)}
-.pick .card{filter:brightness(.94)}
-.pick:hover .card{filter:brightness(1.05)}
-.pick .nameplate{margin-top:11px;text-align:center}
-.pick .nameplate .n{font-family:var(--ui);font-size:13.5px;font-weight:700;color:#fff;line-height:1.25}
-.pick .nameplate .f{font-family:var(--ui);font-size:10.5px;font-weight:600;margin-top:5px;
-  letter-spacing:.04em}
-.pick .nameplate .d{font-family:var(--ui);font-size:11.5px;color:var(--text-dim);margin-top:8px;line-height:1.45}
-.pick .press{margin-top:11px;width:100%;padding:10px 0;border-radius:9px;cursor:pointer;border:0;
-  font-family:var(--ui);font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--pc,var(--cyan));background:color-mix(in srgb,var(--pc,#00E5FF) 12%,transparent);
-  border:1px solid color-mix(in srgb,var(--pc,#00E5FF) 45%,transparent);
-  transition:.18s ease-out}
-.pick:hover .press{background:color-mix(in srgb,var(--pc,#00E5FF) 20%,transparent);
-  border-color:var(--pc,var(--cyan))}
-.pick.taken{transform:translateY(-10px) scale(1.04);border-color:var(--pc,var(--cyan));
-  box-shadow:0 0 0 2px var(--pc,var(--cyan)),0 0 38px -6px var(--pc,rgba(0,229,255,.5));z-index:8}
-.pick.gone{opacity:0;transform:translateY(18px) scale(.94);pointer-events:none}
+  radial-gradient(90% 55% at 50% -8%,rgba(217,77,41,.06),transparent 68%),
+  linear-gradient(180deg,rgba(8,8,11,.94),rgba(11,11,15,.88) 50%,rgba(6,6,9,.96))}
+.pick-head{position:absolute;top:4.5%;left:0;right:0;z-index:5;
+  padding:0 var(--e-pad);display:flex;align-items:flex-end;gap:22px}
+.pick-head .step{font-family:var(--e-grotesk);font-size:9.5px;font-weight:800;
+  letter-spacing:.26em;text-transform:uppercase;color:var(--e-oxide-lt);
+  border:0;border-radius:0;padding:0;background:none;white-space:nowrap}
+.pick-head h2{font-family:var(--e-display);font-size:clamp(28px,4.4vw,56px);font-weight:400;
+  color:var(--e-paper);margin-top:6px;letter-spacing:-.02em;line-height:.98}
+.pick-sub{font-family:var(--e-serif);font-style:italic;font-size:15px;
+  color:var(--e-paper-3);margin-left:auto;max-width:30ch;text-align:right;
+  padding-left:22px;border-left:1px solid var(--e-rule)}
+.pick-rail{position:absolute;inset:0;display:grid;place-items:center;
+  padding:clamp(130px,17vh,190px) var(--e-pad) 12vh}
+.pick-row{display:flex;gap:clamp(10px,1.6vw,22px);justify-content:center;align-items:flex-start;
+  flex-wrap:wrap;max-width:1280px}
+/* each entry is a plate with a hanging caption */
+.pick{position:relative;width:clamp(140px,13.2vw,186px);cursor:pointer;border-radius:0;
+  padding:0;background:transparent;border:0;counter-increment:plate;
+  transition:transform var(--e-mid) var(--e-ez-out),opacity var(--e-mid) var(--e-ez)}
+.pick:hover{transform:translateY(-10px)}
+.pick .card{filter:brightness(.82) saturate(.92);border-radius:0;
+  border:1px solid var(--e-rule);
+  transition:filter var(--e-mid) var(--e-ez),border-color var(--e-mid) var(--e-ez),
+    box-shadow var(--e-mid) var(--e-ez)}
+.pick:hover .card{filter:brightness(1.04) saturate(1);border-color:var(--pc,var(--e-oxide));
+  box-shadow:0 28px 50px -26px #000,0 0 34px -14px var(--pc,var(--e-oxide-glow))}
+.pick.legendary .card{border-color:rgba(201,162,39,.42)}
+/* the plate number, set in the margin */
+.pick:before{content:counter(plate,decimal-leading-zero);position:absolute;top:-22px;left:0;
+  font-family:var(--e-grotesk);font-size:9.5px;font-weight:800;letter-spacing:.18em;
+  color:var(--e-paper-4);transition:color var(--e-fast) var(--e-ez)}
+.pick:hover:before{color:var(--e-oxide-lt)}
+.pick .nameplate{margin-top:14px;text-align:left;padding-top:12px;
+  border-top:1px solid var(--e-rule)}
+.pick .nameplate .n{font-family:var(--e-display);font-size:17px;font-weight:400;
+  color:var(--e-paper);line-height:1.14}
+.pick .nameplate .f{font-family:var(--e-grotesk);font-size:9px;font-weight:700;margin-top:7px;
+  letter-spacing:.16em;text-transform:uppercase}
+.pick .nameplate .d{font-family:var(--e-serif);font-size:13px;font-style:italic;
+  color:var(--e-paper-3);margin-top:9px;line-height:1.5}
+.pick .press{margin-top:14px;width:100%;padding:11px 0;border-radius:0;cursor:pointer;
+  font-family:var(--e-grotesk);font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--e-paper-3);background:transparent;
+  border:1px solid var(--e-rule);
+  transition:var(--e-fast) var(--e-ez)}
+.pick:hover .press{background:var(--pc,var(--e-oxide));border-color:var(--pc,var(--e-oxide));
+  color:#0B0B0F}
+.pick.taken{transform:translateY(-14px)}
+.pick.taken .card{border-color:var(--pc,var(--e-oxide));
+  box-shadow:0 0 0 1px var(--pc,var(--e-oxide)),0 34px 60px -26px #000,
+    0 0 60px -18px var(--pc,var(--e-oxide-glow));filter:brightness(1.06)}
+.pick.gone{opacity:0;transform:translateY(20px);pointer-events:none}
+.pick-row{counter-reset:plate}
 .pick-foot{position:absolute;bottom:5%;left:0;right:0;text-align:center;z-index:6;opacity:0;
-  transition:opacity .5s ease-out;font-family:var(--ui)}
+  transition:opacity var(--e-mid) var(--e-ez);font-family:var(--e-grotesk);padding:0 var(--e-pad)}
 .pick-foot.on{opacity:1}
-.pick-foot .a{font-size:16px;font-weight:700;color:#fff}
-.pick-foot .b{font-size:12.5px;color:var(--text-dim);margin-top:6px}
+.pick-foot .a{font-family:var(--e-display);font-size:26px;font-weight:400;color:var(--e-paper)}
+.pick-foot .b{font-size:11.5px;color:var(--e-paper-3);margin-top:8px;letter-spacing:.04em}
+@media(max-width:820px){
+  .pick-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .pick-sub{margin-left:0;text-align:left;padding-left:0;border-left:0;
+    padding-top:12px;border-top:1px solid var(--e-rule)}
+  .pick-rail{padding-top:clamp(160px,26vh,240px)}
+}
 
 /* ============================================================
-   THE HALL — quiet layout, loud accents.
-   rail · topbar · roster · quests · analytics column
-   Structure is calm; all energy comes from the card art,
-   the rarity glow and the two accent colours.
+   THE HALL — the front page of a folio.
+   masthead · running head · lede plate · ruled columns
+   No icon rail, no pills, no glow. Structure is made of rules
+   and measure; the only accent is oxide.
    ============================================================ */
 .hall{
   position:absolute;inset:0;
-  display:grid;
-  grid-template-columns:72px 1fr;
-  background:
-    radial-gradient(90% 70% at 50% -10%,rgba(30,42,51,.4),transparent 70%),
-    linear-gradient(180deg,rgba(9,12,15,.86),rgba(14,21,27,.7) 45%,rgba(9,12,15,.92));
-}
-
-/* ---------- LEFT ICON RAIL ---------- */
-.rail{
-  position:relative;display:flex;flex-direction:column;align-items:center;
-  padding:16px 0;gap:6px;
-  background:rgba(22,24,31,.92);border-right:1px solid var(--line);z-index:30;
-}
-.rail .logo{width:34px;height:34px;color:var(--gold);margin-bottom:14px;opacity:.9}
-.rail-btn{
-  position:relative;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
-  cursor:pointer;color:var(--parch-3);transition:.2s ease-out;
-}
-.rail-btn svg{width:20px;height:20px}
-.rail-btn{--rc:var(--cyan)}
-.rail-btn:nth-of-type(2){--rc:var(--azure)}
-.rail-btn:nth-of-type(3){--rc:var(--lime)}
-.rail-btn:nth-of-type(4){--rc:var(--gold-a)}
-.rail-btn:nth-of-type(5){--rc:var(--magenta)}
-.rail-btn:nth-of-type(6){--rc:var(--orange)}
-.rail-btn:nth-of-type(7){--rc:var(--violet)}
-.rail-btn:hover{color:var(--rc);background:rgba(255,255,255,.05);
-  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 30%,transparent)}
-.rail-btn.on{color:var(--cyan);background:rgba(0,229,255,.10);
-  box-shadow:0 0 18px rgba(0,229,255,.22)}
-.rail-btn.on:before{content:"";position:absolute;left:-13px;top:50%;transform:translateY(-50%);
-  width:3px;height:22px;border-radius:0 3px 3px 0;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.rail-btn .tip{
-  position:absolute;left:56px;top:50%;transform:translateY(-50%) translateX(-6px);white-space:nowrap;
-  font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.02em;color:var(--parch-lt);
-  background:rgba(22,24,31,.97);border:1px solid var(--line);border-radius:7px;padding:7px 11px;
-  opacity:0;pointer-events:none;transition:.18s ease-out;z-index:40}
-.rail-btn:hover .tip{opacity:1;transform:translateY(-50%) translateX(0)}
-.rail .spacer{flex:1}
-
-/* ---------- RIGHT OF RAIL ---------- */
-.hall-main{display:grid;grid-template-rows:auto 1fr;min-width:0;min-height:0}
-
-/* ---------- TOP BAR ---------- */
-.h-top{display:flex;align-items:center;gap:26px;padding:16px 26px;z-index:20;
-  border-bottom:1px solid var(--line)}
-.h-you{display:flex;align-items:center;gap:12px;cursor:pointer;transition:.2s ease-out}
-.h-you:hover{opacity:.85}
-.h-avatar{position:relative;width:48px;height:48px;flex:0 0 auto}
-.h-avatar .ring{position:absolute;inset:0;transform:rotate(-90deg)}
-.h-avatar .face{position:absolute;inset:4px;border-radius:50%;overflow:hidden;
-  background:var(--panel-2);display:grid;place-items:center;color:var(--gold)}
-.h-you .nm{font-family:var(--ui);font-size:16px;font-weight:700;color:#fff;line-height:1.15}
-.h-you .lv{font-family:var(--ui);font-size:11.5px;color:var(--text-dim);margin-top:2px}
-
-.h-xpwrap{flex:1;max-width:420px;min-width:150px}
-.h-xprow{display:flex;align-items:baseline;justify-content:space-between}
-.h-xprow .lbl{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--label)}
-.h-xprow .pct{font-family:var(--ui);font-size:12px;font-weight:700;color:var(--text-dim);font-variant-numeric:tabular-nums}
-.h-xpbar{height:8px;border-radius:5px;background:rgba(255,255,255,.06);margin-top:7px;overflow:hidden}
-.h-xpbar i{display:block;height:100%;border-radius:5px;width:0;
-  background:linear-gradient(90deg,var(--cyan),var(--azure));
-  transition:width 1s cubic-bezier(.22,.8,.24,1)}
-.h-xpnum{font-family:var(--ui);font-size:11.5px;color:var(--text-dim);margin-top:6px;font-variant-numeric:tabular-nums}
-
-.h-purse{margin-left:auto;display:flex;align-items:center;gap:10px}
-.h-coin{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:22px;
-  border:1px solid var(--line);background:var(--panel);cursor:pointer;transition:.2s ease-out}
-.h-coin{--cc:var(--gold-a)}
-.h-coin:hover{border-color:var(--cc);background:var(--panel-2);
-  box-shadow:0 0 16px -4px var(--cc)}
-.h-coin.gem{--cc:var(--cyan)}
-.h-coin .v{font-family:var(--ui);font-size:14px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
-.h-ico{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;
-  border:1px solid var(--line);background:var(--panel);color:var(--text-dim);transition:.2s ease-out}
-.h-ico:hover{border-color:rgba(255,255,255,.16);color:#fff}
-
-/* ---------- BODY: roster + analytics ---------- */
-.h-body{display:grid;grid-template-columns:1fr 260px;gap:22px;padding:22px 26px 26px;
-  min-height:0;overflow:auto}
-.h-left{display:flex;flex-direction:column;gap:22px;min-width:0}
-.sec-label{font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--label);margin-bottom:12px}
-
-/* roster row */
-.roster{display:flex;gap:16px;align-items:stretch;overflow-x:auto;padding:10px 4px 14px}
-.roster::-webkit-scrollbar{height:6px}
-.roster::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-.rcard{
-  position:relative;flex:0 0 168px;border-radius:14px;overflow:hidden;cursor:pointer;
-  background:var(--panel);border:1px solid var(--border-c,#5C6370);
-  transition:transform .2s ease-out,box-shadow .2s ease-out,border-color .2s ease-out;
   display:flex;flex-direction:column;
+  background:
+    radial-gradient(80% 60% at 50% -12%,rgba(217,77,41,.05),transparent 66%),
+    linear-gradient(180deg,rgba(8,8,11,.9),rgba(11,11,15,.82) 45%,rgba(6,6,9,.94));
+  overflow:hidden;
 }
-.rcard:hover{transform:translateY(-6px);
-  box-shadow:0 18px 34px -14px rgba(0,0,0,.85),0 0 26px -6px var(--fc,rgba(0,229,255,.5))}
-.rcard.rare{border-color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.35)}
-.rcard.legendary{border-color:var(--gold);box-shadow:0 0 24px rgba(255,215,0,.35)}
-.rcard.featured{transform:scale(1.06) translateY(-6px);z-index:5;
-  border-color:var(--fc,var(--cyan));
-  box-shadow:0 0 0 2px var(--fc,var(--cyan)),0 0 36px -4px var(--fc,rgba(0,229,255,.5)),0 26px 44px -16px #000}
-.rcard.featured:hover{transform:scale(1.07) translateY(-9px)}
-.rcard .art{position:relative;aspect-ratio:3/3.4;overflow:hidden;background:var(--navy-3)}
-.rcard .art img{width:100%;height:100%;object-fit:cover;display:block}
-.rcard .chip{position:absolute;top:9px;left:9px;width:26px;height:26px;border-radius:50%;
-  display:grid;place-items:center;background:rgba(9,12,15,.8);
-  border:1px solid var(--fc,rgba(255,255,255,.2));
-  box-shadow:0 0 12px -3px var(--fc,transparent);backdrop-filter:blur(6px)}
-.rcard .chip svg{width:14px;height:14px}
-.rcard .lock{position:absolute;inset:0;display:grid;place-items:center;background:rgba(9,12,15,.55)}
-.rcard.locked{opacity:.4;filter:grayscale(1)}
-.rcard .meta{padding:10px 12px 0;text-align:center}
-.rcard .stars{display:flex;gap:2px;justify-content:center;margin-bottom:7px}
-.rcard .stars svg{width:11px;height:11px}
-.rcard .nm{font-family:var(--ui);font-size:14px;font-weight:600;color:#fff;line-height:1.2}
-.rcard .ttl{font-family:var(--ui);font-size:11px;color:var(--text-dim);margin-top:3px}
-.rcard .pw{font-family:var(--ui);font-size:12px;color:var(--text-dim);margin-top:6px;font-variant-numeric:tabular-nums}
-.rcard .strip{margin-top:auto;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;
-  background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
-.rcard .strip .a{font-family:var(--ui);font-size:11.5px;font-weight:600;color:#fff}
-.rcard .strip .b{font-family:var(--ui);font-size:11px;color:var(--text-dim)}
-/* featured expands into a stat table */
-.rcard .table{padding:2px 12px 12px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px)}
-.rcard .table div{display:flex;justify-content:space-between;padding:3px 0;
-  font-family:var(--ui);font-size:11px}
-.rcard .table .k{color:var(--text-dim)}
-.rcard .table .v{color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
 
-/* quests panel */
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
-.quests{display:grid;grid-template-columns:1fr 1fr 1fr}
-.quest{padding:0 20px}
-.quest:first-child{padding-left:0}
-.quest:last-child{padding-right:0}
-.quest+.quest{border-left:1px solid var(--line)}
-.quest .qrow{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.quest .qn{font-family:var(--ui);font-size:13.5px;font-weight:600;color:#fff}
-.quest .qc{font-family:var(--ui);font-size:13px;font-weight:700;color:var(--text-dim);font-variant-numeric:tabular-nums}
-.quest .qc b{color:var(--qc,var(--cyan));font-weight:700}
-.quest:nth-child(1){--qc:var(--lime)}
-.quest:nth-child(2){--qc:var(--azure)}
-.quest:nth-child(3){--qc:var(--magenta)}
+/* ---------- THE MASTHEAD ---------- */
+.mast{flex:0 0 auto;display:flex;align-items:center;gap:clamp(14px,2vw,26px);
+  padding:clamp(14px,1.8vw,22px) var(--e-pad) 0}
+.mast .crest{width:34px;height:34px;color:var(--e-oxide);flex:0 0 auto}
+.mast .title{font-family:var(--e-display);font-size:clamp(22px,2.6vw,34px);font-weight:400;
+  letter-spacing:.24em;text-indent:.24em;color:var(--e-paper);line-height:1;white-space:nowrap}
+.mast .edition{font-family:var(--e-grotesk);font-size:9px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--e-paper-4);line-height:1.5;
+  padding-left:clamp(12px,1.6vw,20px);border-left:1px solid var(--e-rule);white-space:nowrap}
+.mast .purse{margin-left:auto;display:flex;align-items:center;gap:clamp(10px,1.4vw,20px)}
+/* currency is set as a figure with a unit, like a price in a catalogue */
+.m-coin{display:flex;align-items:baseline;gap:6px;cursor:pointer;background:none;border:0;
+  transition:color var(--e-fast) var(--e-ez)}
+.m-coin .v{font-family:var(--e-display);font-size:20px;font-weight:500;color:var(--e-paper);
+  font-variant-numeric:tabular-nums;line-height:1}
+.m-coin .u{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.m-coin:hover .v{color:var(--e-oxide-lt)}
+.m-coin:hover .u{color:var(--e-oxide-lt)}
+.m-ico{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--e-rule);
+  background:transparent;color:var(--e-paper-3);cursor:pointer;transition:var(--e-fast) var(--e-ez)}
+.m-ico:hover{border-color:var(--e-oxide);color:var(--e-oxide-lt)}
 
-.quest .qbar{height:5px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:10px;overflow:hidden}
-.quest .qbar i{display:block;height:100%;border-radius:4px;width:0;
-  background:var(--qc,var(--cyan));
-  transition:width .9s cubic-bezier(.22,.8,.24,1)}
+/* ---------- THE RUNNING HEAD (navigation as a contents line) ---------- */
+.runhead{flex:0 0 auto;display:flex;align-items:stretch;gap:clamp(16px,2.4vw,34px);
+  padding:0 var(--e-pad);margin-top:clamp(10px,1.4vw,16px);
+  border-top:1px solid var(--e-rule);border-bottom:1px solid var(--e-rule);
+  overflow-x:auto;scrollbar-width:none}
+.runhead::-webkit-scrollbar{display:none}
+.rh{position:relative;flex:0 0 auto;padding:13px 0;cursor:pointer;background:none;border:0;
+  font-family:var(--e-grotesk);font-size:10.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--e-paper-4);white-space:nowrap;
+  transition:color var(--e-fast) var(--e-ez)}
+.rh:hover{color:var(--e-paper)}
+.rh.on{color:var(--e-paper)}
+.rh.on:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--e-oxide)}
+.rh .n{font-size:8px;color:var(--e-paper-5);margin-right:6px;letter-spacing:.1em}
+.rh:hover .n,.rh.on .n{color:var(--e-oxide)}
 
-/* ---------- RIGHT ANALYTICS COLUMN ---------- */
-.h-right{display:flex;flex-direction:column;gap:14px;min-width:0}
-.mini{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-.mini .lbl{font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--label);margin-bottom:12px;display:flex;align-items:center;gap:7px}
-/* each panel owns a colour so the column is not one flat blue */
-.mini .lbl:before{content:"";width:6px;height:6px;border-radius:2px;background:var(--ac,var(--cyan));
-  box-shadow:0 0 8px var(--ac,var(--cyan))}
-.mini{--ac:var(--cyan)}
-.mini.p-stats{--ac:var(--azure)}
-.mini.p-syn{--ac:var(--lime)}
-.mini.p-win{--ac:var(--magenta)}
-.mini.p-next{--ac:var(--orange)}
-.mini.p-stats{border-color:rgba(61,139,255,.24)}
-.mini.p-syn{border-color:rgba(93,255,159,.22)}
-.mini.p-win{border-color:rgba(255,61,190,.22)}
-.mini.urgent{border-color:rgba(255,140,0,.34)}
-.radar{display:grid;place-items:center}
-.synergy{display:flex;align-items:center;gap:14px}
-.donut{position:relative;width:62px;height:62px;flex:0 0 auto}
-.donut .pct{position:absolute;inset:0;display:grid;place-items:center;
-  font-family:var(--ui);font-size:14px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
-.team{display:flex;align-items:center}
-.team .av{width:26px;height:26px;border-radius:50%;border:2px solid var(--panel);overflow:hidden;
-  margin-left:-8px;background:var(--panel-2)}
-.team .av:first-child{margin-left:0}
-.team .av img{width:100%;height:100%;object-fit:cover}
-.synergy .tx{font-family:var(--ui);font-size:12px;color:var(--text-dim)}
-.winrate .foot{display:flex;align-items:baseline;justify-content:space-between;margin-top:8px}
-.winrate .a{font-family:var(--ui);font-size:13px;font-weight:700;color:#fff}
-.winrate .b{font-family:var(--ui);font-size:11px;color:var(--text-dim)}
-.countdown{font-family:var(--ui);font-size:26px;font-weight:800;color:#fff;
-  font-variant-numeric:tabular-nums;letter-spacing:.02em}
-.mini .c1{font-family:var(--ui);font-size:11px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--orange);margin-top:8px}
-.mini .c2{font-family:var(--ui);font-size:12px;color:var(--text-dim);margin-top:4px}
-.mini .cta{margin-top:14px;width:100%;padding:12px;border-radius:9px;cursor:pointer;
-  font-family:var(--ui);font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--orange);border:1px solid rgba(255,140,0,.45);background:rgba(255,140,0,.11);
-  transition:.2s ease-out}
-.mini .cta:hover{background:rgba(255,140,0,.19);border-color:var(--orange);
-  box-shadow:0 0 18px -6px rgba(255,140,0,.6)}
+/* ---------- THE PAGE BODY ---------- */
+.page{flex:1;min-height:0;overflow:auto;padding:clamp(18px,2.4vw,30px) var(--e-pad) var(--e-pad);
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  gap:clamp(22px,3vw,52px);align-content:start}
 
-@media(max-width:1180px){
-  .h-body{grid-template-columns:1fr}
-  .h-right{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+/* ===== THE LEDE — champion as the front-page plate ===== */
+.lede{grid-column:1/-1;display:grid;grid-template-columns:minmax(150px,206px) minmax(0,1fr);
+  gap:clamp(20px,3vw,42px);align-items:center;
+  padding-bottom:clamp(20px,2.6vw,32px);border-bottom:1px solid var(--e-rule)}
+.lede .plate{position:relative}
+.lede .kicker{font-family:var(--e-grotesk);font-size:9px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--e-oxide);margin-bottom:12px}
+.lede h1{font-family:var(--e-display);font-weight:400;font-size:clamp(30px,4.6vw,60px);
+  line-height:.96;letter-spacing:-.02em;color:var(--e-paper);text-wrap:balance}
+.lede h1 em{font-style:italic;color:var(--e-paper-3)}
+/* the pull quote — the record's own flavour, set as display italic */
+.lede .quote{font-family:var(--e-serif);font-style:italic;font-size:clamp(14px,1.5vw,17.5px);
+  line-height:1.55;color:var(--e-paper-3);margin-top:16px;max-width:52ch;
+  padding-left:16px;border-left:2px solid var(--e-oxide)}
+/* the measurements table, set as a ruled strip */
+.lede .figs{display:flex;flex-wrap:wrap;gap:clamp(14px,2.4vw,34px);margin-top:20px;
+  padding-top:16px;border-top:1px solid var(--e-rule)}
+.lede .figs div{min-width:0}
+.lede .figs .k{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.lede .figs .v{font-family:var(--e-display);font-size:clamp(20px,2.2vw,27px);font-weight:500;
+  color:var(--e-paper);margin-top:5px;line-height:1;font-variant-numeric:tabular-nums}
+.lede .figs .v small{font-family:var(--e-grotesk);font-size:11px;font-weight:600;color:var(--e-paper-4)}
+.lede .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+/* ===== COLUMNS ===== */
+.col{min-width:0;display:flex;flex-direction:column;gap:clamp(22px,2.6vw,34px)}
+.col-r{border-left:1px solid var(--e-rule);padding-left:clamp(20px,2.6vw,40px)}
+.blk{min-width:0}
+.blk-h{display:flex;align-items:baseline;gap:14px;margin-bottom:16px}
+.blk-h .t{font-family:var(--e-grotesk);font-size:10px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--e-paper-3);white-space:nowrap}
+.blk-h .ln{flex:1;height:1px;background:var(--e-rule)}
+.blk-h .more{font-family:var(--e-grotesk);font-size:9.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--e-paper-4);cursor:pointer;background:none;border:0;
+  transition:color var(--e-fast) var(--e-ez);white-space:nowrap}
+.blk-h .more:hover{color:var(--e-oxide-lt)}
+
+/* the shelf of records — plates on a baseline */
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(124px,1fr));
+  gap:clamp(12px,1.6vw,20px)}
+.shelf .slot{cursor:pointer;transition:transform var(--e-mid) var(--e-ez-out)}
+.shelf .slot .cap{margin-top:9px;padding-top:8px;border-top:1px solid var(--e-rule)}
+.shelf .slot .cap .n{font-family:var(--e-display);font-size:13.5px;color:var(--e-paper);
+  line-height:1.16;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.shelf .slot .cap .m{font-family:var(--e-grotesk);font-size:8.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--e-paper-4);margin-top:5px}
+.shelf .slot.is-champ .cap .m{color:var(--e-oxide)}
+
+/* the ledger of standing tasks — a ruled list, not cards */
+.tasks{display:flex;flex-direction:column}
+.task{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--e-rule)}
+.task:first-child{border-top:1px solid var(--e-rule)}
+.task .nm{font-family:var(--e-serif);font-size:15px;color:var(--e-paper-2);flex:1;min-width:0}
+.task .ct{font-family:var(--e-grotesk);font-size:11px;font-weight:700;color:var(--e-paper-4);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.task .ct b{color:var(--e-paper);font-weight:700}
+.task .ct.done{color:var(--e-good)}
+.task .bar{flex:0 0 clamp(52px,7vw,96px);height:2px;background:var(--e-paper-5);position:relative}
+.task .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--e-oxide);
+  transition:width .9s var(--e-ez-out)}
+
+/* the record of trials — real numbers only */
+.tally{display:flex;flex-wrap:wrap;gap:clamp(16px,2.2vw,30px);
+  padding:16px 0;border-top:1px solid var(--e-rule);border-bottom:1px solid var(--e-rule)}
+.tally div{min-width:0}
+.tally .k{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.tally .v{font-family:var(--e-display);font-size:clamp(21px,2.3vw,29px);font-weight:500;
+  color:var(--e-paper);margin-top:5px;line-height:1;font-variant-numeric:tabular-nums}
+.tally .v.warm{color:var(--e-oxide-lt)}
+
+/* the standing of the deck — a ruled bar chart of the aether curve */
+.curve{display:flex;align-items:flex-end;gap:4px;height:74px;margin-top:6px}
+.curve .b{flex:1;position:relative;background:linear-gradient(180deg,var(--e-oxide),var(--e-oxide-dk));
+  min-height:2px;transition:height .8s var(--e-ez-out)}
+.curve .b span{position:absolute;left:0;right:0;bottom:-16px;text-align:center;
+  font-family:var(--e-grotesk);font-size:8px;color:var(--e-paper-4)}
+.curve-foot{margin-top:24px;font-family:var(--e-grotesk);font-size:11px;color:var(--e-paper-3)}
+
+/* the champion's proportions, drawn as a profile of rules */
+.profile{display:flex;flex-direction:column;gap:9px;margin-top:4px}
+.pf{display:grid;grid-template-columns:34px 1fr 30px;align-items:center;gap:11px}
+.pf .k{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.pf .tr{height:1px;background:var(--e-paper-5);position:relative}
+.pf .tr i{position:absolute;left:0;top:-2px;height:5px;width:0;background:var(--fi,var(--e-oxide));
+  transition:width .9s var(--e-ez-out)}
+.pf .v{font-family:var(--e-grotesk);font-size:11px;font-weight:600;color:var(--e-paper-2);
+  text-align:right;font-variant-numeric:tabular-nums}
+
+/* the notice — the next trial, stated plainly */
+.notice{padding:clamp(16px,2vw,22px);border:1px solid var(--e-rule);
+  background:linear-gradient(180deg,var(--e-oxide-wash),transparent)}
+.notice .k{font-family:var(--e-grotesk);font-size:9px;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--e-oxide)}
+.notice .t{font-family:var(--e-display);font-size:clamp(19px,2.1vw,25px);color:var(--e-paper);
+  margin-top:10px;line-height:1.14}
+.notice .s{font-family:var(--e-serif);font-style:italic;font-size:14px;color:var(--e-paper-3);margin-top:9px}
+.notice .e-act{margin-top:18px;width:100%;justify-content:center}
+
+@media(max-width:1080px){
+  .page{grid-template-columns:1fr}
+  .col-r{border-left:0;padding-left:0;border-top:1px solid var(--e-rule);padding-top:clamp(20px,3vw,30px)}
+  .lede{grid-template-columns:minmax(130px,168px) minmax(0,1fr)}
 }
-@media(max-width:720px){
-  .hall{grid-template-columns:60px 1fr}
-  .h-top{flex-wrap:wrap;gap:14px}
-  .h-xpwrap{order:3;max-width:none;flex-basis:100%}
+@media(max-width:640px){
+  .mast{flex-wrap:wrap;gap:12px}
+  .mast .edition{display:none}
+  .mast .purse{margin-left:auto}
+  .lede{grid-template-columns:1fr;gap:20px}
+  .lede .plate{max-width:180px}
+  .shelf{grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}
 }
 
 /* ---- reward ceremony after a battle ---- */
@@ -700,7 +897,8 @@ body.reduced #ground video{display:none}
   background:radial-gradient(60% 60% at 50% 50%,rgba(4,3,3,.92),rgba(0,0,0,.985))}
 #spoils.on{opacity:1;pointer-events:auto}
 .sp-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.sp-verdict{font-family:var(--ui);font-weight:800;font-size:clamp(22px,3vw,34px);letter-spacing:.06em;color:var(--parch-lt);
+.sp-verdict{font-family:var(--e-display);font-weight:400;font-size:clamp(30px,5vw,64px);
+  letter-spacing:-.01em;color:var(--e-paper);text-align:center;padding:0 var(--e-pad);
   opacity:0;animation:sf 2.2s ease .5s forwards}
 .sp-sub{margin-top:14px;opacity:0;animation:sf 2s ease 1.2s forwards}
 /* the sealed reward, waiting to be broken */
@@ -723,11 +921,11 @@ body.reduced #ground video{display:none}
 .sp-gain{display:flex;gap:30px;margin-top:34px;opacity:0;transition:opacity 1.2s var(--ez)}
 .sp-gain.up{opacity:1}
 .sp-gain div{text-align:center}
-.sp-gain .v{font-family:var(--ui);font-size:21px;color:rgba(216,205,184,.9)}
-.sp-gain .k{font-family:var(--ui);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(216,205,184,.32);margin-top:5px}
-.sp-go{margin-top:38px;opacity:0;transition:opacity 1.2s var(--ez)}
-.sp-go.up{opacity:1}
+.sp-gain .v{font-family:var(--e-display);font-size:30px;font-weight:500;color:var(--e-paper)}
+.sp-gain .k{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--e-paper-4);margin-top:7px}
+.sp-go{margin-top:38px;opacity:0;pointer-events:none;transition:opacity 1.2s var(--ez)}
+.sp-go.up{opacity:1;pointer-events:auto}
 /* level-up flare, rare and brief */
 .sp-level{margin-top:22px;font-family:var(--ui);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
   color:rgba(224,150,110,.95);text-shadow:0 0 24px rgba(196,85,44,.8);opacity:0;transition:1s var(--ez)}
@@ -920,108 +1118,175 @@ body.reduced #ground video{display:none}
    ============================================================ */
 /* card-dense places sit on a heavier veil so grids stay the focus,
    but the painted ground still breathes at the edges */
-.screen{position:absolute;inset:0;z-index:40;opacity:0;pointer-events:none;transition:opacity .9s var(--ez);
+.screen{position:absolute;inset:0;z-index:40;opacity:0;pointer-events:none;
+  transition:opacity var(--e-slow) var(--e-ez);
   display:flex;flex-direction:column;background:
-   radial-gradient(70% 60% at 50% 0%,rgba(28,21,18,.7),transparent 72%),
-   linear-gradient(180deg,rgba(10,9,8,.93),rgba(12,10,9,.9) 60%,rgba(5,4,4,.95))}
+   radial-gradient(80% 60% at 50% -8%,rgba(217,77,41,.05),transparent 68%),
+   linear-gradient(180deg,rgba(8,8,11,.96),rgba(11,11,15,.94) 55%,rgba(6,6,9,.98))}
 .screen.live{opacity:1;pointer-events:auto}
-.schead{display:flex;align-items:flex-end;gap:24px;padding:26px 40px 18px;border-bottom:1px solid var(--hair);flex:0 0 auto}
-.schead h2{font-size:24px;letter-spacing:.3em;color:rgba(216,205,184,.85)}
-.schead .sb{font-size:13.5px;color:var(--ivory-3);font-style:italic;margin-top:5px}
-.back{margin-left:auto;font-family:var(--ui);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ivory-3);
-  border:1px solid var(--hair);padding:10px 18px;transition:.7s var(--ez)}
-.back:hover{color:var(--ivory);border-color:rgba(107,73,52,.6);background:rgba(140,47,28,.08)}
+/* the section head reads like a chapter opening */
+.schead{display:flex;align-items:flex-end;gap:clamp(16px,3vw,34px);
+  padding:clamp(22px,3vw,34px) var(--e-pad) clamp(14px,1.8vw,20px);
+  border-bottom:1px solid var(--e-rule);flex:0 0 auto}
+.schead h2{font-family:var(--e-display);font-size:clamp(26px,3.6vw,46px);font-weight:400;
+  letter-spacing:-.01em;color:var(--e-paper);line-height:1;text-transform:none}
+.schead .sb{font-family:var(--e-serif);font-size:14px;color:var(--e-paper-3);
+  font-style:italic;margin-top:9px}
+.back{margin-left:auto;font-family:var(--e-grotesk);font-size:10px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--e-paper-3);
+  border:1px solid var(--e-rule);padding:11px 18px;background:transparent;
+  transition:var(--e-fast) var(--e-ez);white-space:nowrap}
+.back:hover{color:var(--e-paper);border-color:var(--e-oxide);background:var(--e-oxide-wash)}
 .scbody{flex:1;min-height:0;display:flex}
-.rail{flex:0 0 226px;border-right:1px solid var(--hair);padding:24px 20px;overflow:auto;
-  background:linear-gradient(180deg,rgba(16,13,11,.5),transparent)}
-.rail h4{font-family:var(--ui);font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ivory-4);margin:20px 0 9px}
+/* the filter rail: hanging indents, not a sidebar of chips */
+.rail{flex:0 0 clamp(180px,17vw,236px);border-right:1px solid var(--e-rule);
+  padding:clamp(20px,2.4vw,30px) clamp(16px,1.8vw,24px);overflow:auto;background:transparent}
+.rail h4{font-family:var(--e-grotesk);font-size:8.5px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--e-paper-4);margin:26px 0 10px;
+  padding-bottom:8px;border-bottom:1px solid var(--e-rule)}
 .rail h4:first-child{margin-top:0}
-.tick{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-family:var(--ui);font-size:11.5px;
-  color:var(--ivory-3);transition:.5s}
-.tick:hover{color:var(--ivory)}
-.tick .sw{width:9px;height:9px;border:1px solid rgba(216,205,184,.28);flex:0 0 auto;transition:.5s}
-.tick.on{color:var(--ivory)}
-.tick.on .sw{background:var(--sw,var(--live-ember));border-color:transparent;box-shadow:0 0 11px var(--sw,var(--live-ember))}
-.tick .ct{margin-left:auto;font-size:10px;color:var(--ivory-4)}
-.gridwrap{flex:1;overflow:auto;padding:26px 36px 50px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:18px}
-.groupline{display:flex;align-items:center;gap:14px;margin:0 0 16px}
-.groupline .ln{flex:1;height:1px;background:linear-gradient(90deg,rgba(216,205,184,.14),transparent)}
+.tick{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;
+  font-family:var(--e-grotesk);font-size:11.5px;font-weight:500;
+  color:var(--e-paper-3);transition:color var(--e-fast) var(--e-ez)}
+.tick:hover{color:var(--e-paper)}
+.tick .sw{width:7px;height:7px;border:1px solid var(--e-rule-2);flex:0 0 auto;
+  transition:var(--e-fast) var(--e-ez)}
+.tick.on{color:var(--e-paper)}
+.tick.on .sw{background:var(--sw,var(--e-oxide));border-color:transparent}
+.tick .ct{margin-left:auto;font-size:10px;color:var(--e-paper-4);font-variant-numeric:tabular-nums}
+.gridwrap{flex:1;overflow:auto;padding:clamp(22px,2.6vw,32px) var(--e-pad) clamp(40px,6vw,64px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));
+  gap:clamp(14px,1.8vw,22px)}
+.groupline{display:flex;align-items:baseline;gap:14px;margin:0 0 18px}
+.groupline .ln{flex:1;height:1px;background:var(--e-rule)}
+/* legacy .fn / .fn2 hooks retargeted to the editorial voice */
+.gridwrap .fn,.rail .fn{font-family:var(--e-grotesk);font-size:10px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--e-paper-3)}
+.gridwrap .fn2,.rail .fn2{font-family:var(--e-grotesk);font-size:9px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--e-paper-4)}
+@media(max-width:760px){
+  .scbody{flex-direction:column}
+  .rail{flex:0 0 auto;border-right:0;border-bottom:1px solid var(--e-rule);
+    display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+  .rail h4{margin:0;border-bottom:0;padding-bottom:0;flex-basis:100%}
+  .schead{flex-wrap:wrap;gap:12px}
+}
 
-/* ---------- inspector ---------- */
-#insp{position:fixed;inset:0;z-index:200;opacity:0;pointer-events:none;transition:opacity .9s var(--ez);
-  background:radial-gradient(60% 60% at 50% 50%,rgba(4,3,3,.9),rgba(2,2,2,.985));backdrop-filter:blur(5px)}
+/* ---------- inspector — the full-page article ---------- */
+#insp{position:fixed;inset:0;z-index:200;opacity:0;pointer-events:none;
+  transition:opacity var(--e-slow) var(--e-ez);
+  background:linear-gradient(180deg,rgba(6,6,9,.97),rgba(4,4,6,.99));backdrop-filter:blur(6px)}
 #insp.live{opacity:1;pointer-events:auto}
-.istage{position:absolute;inset:0;display:grid;grid-template-columns:1fr minmax(390px,510px);align-items:center;padding:0 6vw;gap:40px}
-.iart{justify-self:center;width:min(320px,25vw);position:relative;opacity:0;transform:translateY(18px) scale(.95);transition:1s var(--ez) .1s}
+.istage{position:absolute;inset:0;display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(360px,1.15fr);
+  align-items:center;padding:0 var(--e-pad);gap:clamp(28px,4.4vw,72px)}
+.iart{justify-self:center;width:min(300px,24vw);position:relative;opacity:0;
+  transform:translateY(18px);transition:var(--e-slow) var(--e-ez-out) .08s}
 #insp.live .iart{opacity:1;transform:none}
-.iart .card{filter:none;cursor:default;border-color:rgba(107,73,52,.5);box-shadow:0 70px 130px -50px #000,0 0 90px -30px var(--ag)}
+.iart .card{filter:none;cursor:default;
+  box-shadow:0 70px 130px -50px #000,0 0 90px -40px var(--fi,var(--e-oxide-glow))}
 .iart .card:hover{transform:none}
-.iinfo{opacity:0;transform:translateX(20px);transition:1s var(--ez) .26s;max-height:84vh;overflow:auto;padding:18px 0}
+.iinfo{opacity:0;transform:translateY(14px);transition:var(--e-slow) var(--e-ez-out) .2s;
+  max-height:86vh;overflow:auto;padding:22px 0;min-width:0}
 #insp.live .iinfo{opacity:1;transform:none}
-.iinfo h3{font-size:36px;line-height:1.08}
-.iinfo .cn{font-size:14px;letter-spacing:.32em;color:rgba(160,55,30,.95);margin-top:8px}
-.chips{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
-.chip{font-family:var(--ui);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;border:1px solid currentColor;opacity:.85}
-.quick{margin-top:22px;padding:18px 20px;border-left:1px solid rgba(107,73,52,.6);background:linear-gradient(90deg,rgba(140,47,28,.09),transparent)}
-.sk{margin-bottom:13px}.sk:last-child{margin-bottom:0}
+.iinfo h3{font-family:var(--e-display);font-weight:400;
+  font-size:clamp(30px,4.2vw,54px);line-height:.98;letter-spacing:-.02em;color:var(--e-paper)}
+.iinfo .cn{font-family:var(--e-grotesk);font-size:9.5px;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--e-oxide);margin-top:14px}
+.chips{display:flex;gap:0;margin-top:20px;flex-wrap:wrap;
+  border-top:1px solid var(--e-rule);border-bottom:1px solid var(--e-rule)}
+.chip{font-family:var(--e-grotesk);font-size:9px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;padding:11px 16px 11px 0;margin-right:16px;border:0;opacity:1;
+  color:var(--e-paper-3)}
+/* the skills, set as a numbered apparatus */
+.quick{margin-top:24px;padding:0;border:0;background:none;counter-reset:sk}
+.sk{margin-bottom:0;padding:15px 0;border-bottom:1px solid var(--e-rule);counter-increment:sk;
+  display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start}
+.sk:first-child{border-top:1px solid var(--e-rule)}
+.sk:before{content:counter(sk,decimal-leading-zero);font-family:var(--e-grotesk);font-size:9px;
+  font-weight:800;letter-spacing:.1em;color:var(--e-oxide);padding-top:5px}
 .sk .h{display:flex;align-items:baseline;gap:10px}
-.sk .h b{font-weight:400;font-size:16px;color:rgba(216,205,184,.94)}
-.sk .c{font-family:var(--ui);font-size:9.5px;letter-spacing:.12em;color:rgba(160,55,30,.95);border:1px solid rgba(160,55,30,.5);padding:2px 7px}
-.sk .t{font-family:var(--ui);font-size:12.5px;line-height:1.6;color:var(--ivory-2);margin-top:5px}
-details.deep{margin-top:20px;border-top:1px solid var(--hair);padding-top:14px}
-details.deep summary{list-style:none;cursor:pointer;font-family:var(--ui);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--ivory-3);display:flex;align-items:center;gap:10px;transition:.6s}
+.sk .h b{font-family:var(--e-display);font-weight:500;font-size:19px;color:var(--e-paper)}
+.sk .c{font-family:var(--e-grotesk);font-size:9px;letter-spacing:.12em;color:var(--e-oxide);
+  border:1px solid var(--e-rule-hot);padding:2px 7px}
+.sk .t{font-family:var(--e-serif);font-size:14.5px;line-height:1.62;
+  color:var(--e-paper-2);margin-top:6px}
+details.deep{margin-top:22px;border-top:0;padding-top:0}
+details.deep summary{list-style:none;cursor:pointer;font-family:var(--e-grotesk);font-size:9.5px;
+  font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--e-paper-4);display:flex;align-items:center;gap:12px;
+  transition:color var(--e-fast) var(--e-ez)}
 details.deep summary::-webkit-details-marker{display:none}
-details.deep summary:hover{color:var(--ivory)}
-details.deep summary:after{content:"";flex:1;height:1px;background:rgba(216,205,184,.1)}
-details.deep .b{padding-top:14px;font-size:14.5px;line-height:1.75;color:var(--ivory-2)}
-.iacts{display:flex;gap:11px;margin-top:24px;flex-wrap:wrap}
+details.deep summary:hover{color:var(--e-oxide-lt)}
+details.deep summary:after{content:"";flex:1;height:1px;background:var(--e-rule)}
+details.deep .b{padding-top:16px;font-family:var(--e-serif);font-size:15px;line-height:1.75;
+  color:var(--e-paper-2);column-count:2;column-gap:32px}
+.iacts{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
 
 /* skins strip inside inspector */
 .skins{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.skin{width:62px;aspect-ratio:5/7;border:1px solid var(--hair);position:relative;cursor:pointer;overflow:hidden;transition:.7s var(--ez)}
-.skin:hover{border-color:rgba(107,73,52,.7);transform:translateY(-4px)}
-.skin.on{border-color:rgba(160,55,30,.9);box-shadow:0 0 20px -6px rgba(160,55,30,.9)}
-.skin .lk{position:absolute;inset:0;display:grid;place-items:center;background:rgba(3,3,3,.75);z-index:5;
-  font-family:var(--ui);font-size:8px;letter-spacing:.1em;color:var(--ivory-3)}
-.skin .tag{position:absolute;left:0;right:0;bottom:0;z-index:4;text-align:center;font-family:var(--ui);font-size:7px;
-  letter-spacing:.1em;text-transform:uppercase;background:rgba(4,4,4,.85);color:var(--ivory-3);padding:2px 0}
+.skin{width:58px;aspect-ratio:5/7;border:1px solid var(--e-rule);position:relative;
+  cursor:pointer;overflow:hidden;transition:var(--e-fast) var(--e-ez)}
+.skin:hover{border-color:var(--e-rule-2);transform:translateY(-4px)}
+.skin.on{border-color:var(--e-oxide)}
+.skin .lk{position:absolute;inset:0;display:grid;place-items:center;background:rgba(4,4,6,.8);z-index:5;
+  font-family:var(--e-grotesk);font-size:7px;font-weight:700;letter-spacing:.1em;color:var(--e-paper-4)}
+.skin .tag{position:absolute;left:0;right:0;bottom:0;z-index:4;text-align:center;
+  font-family:var(--e-grotesk);font-size:6.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;background:rgba(6,6,9,.9);
+  color:var(--e-paper-3);padding:3px 0}
+@media(max-width:900px){
+  .istage{grid-template-columns:1fr;align-content:start;padding:5vh var(--e-pad);
+    overflow:auto;gap:24px}
+  .iart{width:min(210px,46vw);justify-self:start}
+  .iinfo{max-height:none;overflow:visible;padding:0 0 40px}
+  details.deep .b{column-count:1}
+}
 
-/* ---------- shop ---------- */
-.shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:22px}
-.wares{position:relative;border:1px solid var(--hair);background:linear-gradient(180deg,rgba(22,17,14,.65),rgba(8,7,6,.85));
-  padding:20px;cursor:pointer;transition:.85s var(--ez);overflow:hidden}
-.wares:hover{border-color:rgba(107,73,52,.55);transform:translateY(-5px);box-shadow:0 30px 50px -30px #000}
-.wares:before{content:"";position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ez);pointer-events:none;
-  background:radial-gradient(80% 60% at 50% 110%,var(--wc,rgba(140,47,28,.4)),transparent 66%)}
-.wares:hover:before{opacity:1}
-.wares .vis{height:132px;position:relative;display:grid;place-items:center;margin-bottom:14px}
-.price{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--hair)}
-.price .p{font-family:var(--ui);font-size:16px;color:rgba(216,205,184,.92)}
-.price .free{color:rgba(150,170,140,.9)}
+/* ---------- shop — the merchant's price list ---------- */
+.shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(206px,1fr));
+  gap:clamp(16px,2vw,26px)}
+.wares{position:relative;border:0;border-top:1px solid var(--e-rule);background:transparent;
+  padding:18px 0 0;cursor:pointer;transition:var(--e-fast) var(--e-ez);overflow:hidden}
+.wares:hover{border-top-color:var(--e-oxide);transform:translateY(-4px)}
+.wares .vis{height:126px;position:relative;display:grid;place-items:center;margin-bottom:16px}
+.wares>div:not(.vis):not(.price){font-family:var(--e-display);font-size:18px;color:var(--e-paper)}
+.price{display:flex;align-items:baseline;gap:8px;margin-top:14px;padding-top:12px;
+  border-top:1px solid var(--e-rule)}
+.price .p{font-family:var(--e-display);font-size:20px;font-weight:500;color:var(--e-paper);
+  font-variant-numeric:tabular-nums}
+.price .free{color:var(--e-good)}
 
-/* ---------- toast ---------- */
-#toast{position:fixed;left:50%;bottom:8%;transform:translateX(-50%);z-index:950;pointer-events:none}
-.tm{padding:12px 22px;background:rgba(10,8,7,.96);border:1px solid rgba(160,55,30,.5);font-size:15px;color:rgba(216,205,184,.88);
-  margin-top:8px;animation:tin .5s var(--ez)}
+/* ---------- toast — a printer's slug ---------- */
+#toast{position:fixed;left:50%;bottom:7%;transform:translateX(-50%);z-index:950;pointer-events:none}
+.tm{padding:13px 24px;background:var(--e-ink);border:0;border-left:2px solid var(--e-oxide);
+  font-family:var(--e-serif);font-size:15px;color:var(--e-paper-2);
+  margin-top:8px;animation:tin .5s var(--e-ez-out);box-shadow:0 24px 50px -26px #000}
 @keyframes tin{from{opacity:0;transform:translateY(10px)}}
 
-
-/* ---------- settings ---------- */
-#settings{position:fixed;inset:0;z-index:210;opacity:0;pointer-events:none;transition:.8s var(--ez);background:rgba(2,2,2,.93);backdrop-filter:blur(6px)}
+/* ---------- settings — the colophon ---------- */
+#settings{position:fixed;inset:0;z-index:210;opacity:0;pointer-events:none;
+  transition:var(--e-slow) var(--e-ez);background:rgba(4,4,6,.96);backdrop-filter:blur(7px)}
 #settings.on{opacity:1;pointer-events:auto}
-.setin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,90vw);padding:40px 44px;
-  border:1px solid rgba(107,73,52,.3);background:linear-gradient(180deg,rgba(18,14,12,.97),rgba(8,7,6,.99))}
-.srow{display:flex;align-items:center;gap:18px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.setin{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(620px,92vw);max-height:88vh;overflow:auto;padding:clamp(28px,4vw,46px);
+  border:1px solid var(--e-rule);background:var(--e-ink)}
+.setin h2{font-family:var(--e-display)!important;font-weight:400!important;
+  font-size:clamp(28px,3.6vw,42px)!important;letter-spacing:-.01em!important;
+  color:var(--e-paper);text-transform:none!important;margin-top:8px!important}
+.srow{display:flex;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid var(--e-rule)}
 .srow:last-of-type{border-bottom:0}
-.srow .t{flex:1}
-.srow .t b{display:block;font-weight:400;font-size:15.5px;color:rgba(216,205,184,.88)}
-.srow .t small{font-family:var(--ui);font-size:10.5px;color:var(--ivory-3);display:block;margin-top:3px;line-height:1.5}
-.swt{width:44px;height:21px;border:1px solid rgba(216,205,184,.22);position:relative;cursor:pointer;transition:.6s;flex:0 0 auto}
-.swt i{position:absolute;top:2px;left:2px;width:15px;height:15px;background:rgba(216,205,184,.4);transition:.6s var(--ez)}
-.swt.on{border-color:rgba(160,55,30,.8);background:rgba(140,47,28,.2)}
-.swt.on i{left:25px;background:rgba(196,85,44,.95);box-shadow:0 0 12px rgba(160,55,30,.9)}
+.srow .t{flex:1;min-width:0}
+.srow .t b{display:block;font-family:var(--e-display);font-weight:400;font-size:18px;
+  color:var(--e-paper)}
+.srow .t small{font-family:var(--e-grotesk);font-size:11px;color:var(--e-paper-4);
+  display:block;margin-top:5px;line-height:1.55}
+.swt{width:42px;height:20px;border:1px solid var(--e-rule-2);position:relative;cursor:pointer;
+  transition:var(--e-fast) var(--e-ez);flex:0 0 auto}
+.swt i{position:absolute;top:2px;left:2px;width:14px;height:14px;background:var(--e-paper-4);
+  transition:var(--e-fast) var(--e-ez-out)}
+.swt.on{border-color:var(--e-oxide);background:var(--e-oxide-wash)}
+.swt.on i{left:24px;background:var(--e-oxide)}
 
 /* responsive scaffolding */
 @media(max-width:1180px){
@@ -1034,6 +1299,285 @@ details.deep .b{padding-top:14px;font-size:14.5px;line-height:1.75;color:var(--i
   .centre{order:-1;padding-top:18px}
   .fp-grid{grid-template-columns:repeat(3,1fr)}
   .istage{grid-template-columns:1fr;padding:0 6vw;overflow:auto}
+}
+
+/* ============================================================
+   THE TRIAL — combat, set as a ruled field.
+   Two ranks face across a centre rule. Everything that can be
+   read is typeset; nothing is a glowing pill.
+   ============================================================ */
+#s-battle{background:
+  radial-gradient(70% 50% at 50% 50%,rgba(217,77,41,.06),transparent 70%),
+  linear-gradient(180deg,rgba(6,6,9,.95),rgba(10,10,14,.9) 48%,rgba(5,5,8,.97))}
+.bt{position:absolute;inset:0;display:flex;flex-direction:column;
+  padding:clamp(10px,1.6vw,20px) var(--e-pad);gap:clamp(6px,1vw,12px)}
+
+/* --- the two nameplates, top and bottom --- */
+.bt-who{flex:0 0 auto;display:flex;align-items:center;gap:14px}
+.bt-who .mk{width:30px;height:30px;flex:0 0 auto;opacity:.7}
+.bt-who .nm{font-family:var(--e-display);font-size:clamp(16px,1.9vw,22px);color:var(--e-paper);line-height:1.1}
+.bt-who .sub{font-family:var(--e-grotesk);font-size:9px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--e-paper-4);margin-top:3px}
+/* the three marks that decide the trial */
+.bt-marks{display:flex;gap:6px;margin-left:4px}
+.bt-marks i{width:15px;height:15px;border:1px solid var(--e-rule-2);display:block;
+  transition:var(--e-mid) var(--e-ez)}
+.bt-marks i.lit{background:var(--e-oxide);border-color:var(--e-oxide)}
+.bt-stats{margin-left:auto;display:flex;align-items:baseline;gap:clamp(12px,1.8vw,24px)}
+.bt-stats div{text-align:right}
+.bt-stats .k{font-family:var(--e-grotesk);font-size:8px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--e-paper-4)}
+.bt-stats .v{font-family:var(--e-display);font-size:19px;font-weight:500;color:var(--e-paper);
+  font-variant-numeric:tabular-nums;line-height:1;margin-top:3px}
+
+/* --- the field --- */
+.bt-field{flex:1;min-height:0;display:grid;grid-template-rows:1fr auto 1fr;
+  gap:clamp(6px,1vw,12px);align-items:center}
+.bt-rank{display:flex;gap:clamp(8px,1.2vw,16px);justify-content:center;align-items:center;
+  min-height:0;height:100%;flex-wrap:nowrap;overflow:visible}
+.bt-rule{height:1px;background:linear-gradient(90deg,transparent,var(--e-rule-2) 15%,
+  var(--e-rule-2) 85%,transparent);position:relative}
+.bt-rule .turn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:var(--e-void);padding:0 16px;font-family:var(--e-grotesk);font-size:9px;
+  font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--e-paper-4);
+  white-space:nowrap}
+
+/* a unit standing on the field */
+.bt-unit{position:relative;width:clamp(78px,8.4vw,116px);cursor:pointer;
+  transition:transform var(--e-mid) var(--e-ez-out),opacity var(--e-mid) var(--e-ez)}
+.bt-unit .card{pointer-events:none}
+.bt-unit .hp{position:absolute;left:0;right:0;bottom:-1px;height:3px;background:rgba(0,0,0,.7);z-index:8}
+.bt-unit .hp i{display:block;height:100%;background:var(--e-good);transition:width var(--e-mid) var(--e-ez)}
+.bt-unit .hp i.hurt{background:var(--e-warn)}
+.bt-unit .hp i.low{background:var(--e-bad)}
+.bt-unit .fig{position:absolute;top:-9px;right:-7px;z-index:9;display:flex;gap:3px}
+.bt-unit .fig span{font-family:var(--e-grotesk);font-size:10px;font-weight:800;
+  min-width:19px;height:19px;display:grid;place-items:center;
+  background:var(--e-ink);border:1px solid var(--e-rule-2);color:var(--e-paper)}
+.bt-unit .fig .p{border-color:var(--e-oxide);color:var(--e-oxide-lt)}
+/* states */
+.bt-unit.ready .card{border-color:var(--e-good)}
+.bt-unit.spent{opacity:.42}
+.bt-unit.sel .card{border-color:var(--e-oxide);
+  box-shadow:0 0 0 1px var(--e-oxide),0 0 34px -10px var(--e-oxide)}
+.bt-unit.target{animation:btPulse 1.1s ease-in-out infinite}
+.bt-unit.target .card{border-color:var(--e-bad)}
+@keyframes btPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bt-unit.hit{animation:btHit .42s var(--e-ez)}
+@keyframes btHit{0%{transform:none}30%{transform:translateX(-7px) rotate(-2deg)}
+  60%{transform:translateX(5px) rotate(1.5deg)}100%{transform:none}}
+.bt-unit.dying{opacity:0;transform:translateY(22px) scale(.9)}
+.bt-empty{width:clamp(78px,8.4vw,116px);aspect-ratio:853/1280;
+  border:1px dashed var(--e-paper-5);display:grid;place-items:center;
+  font-family:var(--e-grotesk);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--e-paper-5)}
+/* the floating damage figure */
+.bt-pop{position:absolute;left:50%;top:38%;transform:translateX(-50%);z-index:20;
+  font-family:var(--e-display);font-size:30px;font-weight:700;color:var(--e-oxide-lt);
+  text-shadow:0 2px 14px #000;pointer-events:none;animation:btPop 1s var(--e-ez-out) forwards}
+@keyframes btPop{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}
+  25%{opacity:1;transform:translate(-50%,-6px) scale(1.12)}
+  100%{opacity:0;transform:translate(-50%,-40px) scale(1)}}
+
+/* --- the hand --- */
+.bt-bar{flex:0 0 auto;display:flex;align-items:center;gap:clamp(10px,1.6vw,20px);
+  padding-top:clamp(6px,1vw,10px);border-top:1px solid var(--e-rule)}
+/* aether drawn as a row of struck marks */
+.bt-aether{display:flex;gap:4px}
+.bt-aether i{width:11px;height:20px;border:1px solid var(--e-rule-2);display:block;
+  transition:var(--e-fast) var(--e-ez)}
+.bt-aether i.full{background:var(--e-oxide);border-color:var(--e-oxide)}
+.bt-hand{flex:1;min-width:0;display:flex;gap:clamp(6px,.9vw,12px);justify-content:center;
+  align-items:flex-end;overflow-x:auto;padding:4px 0;scrollbar-width:none}
+.bt-hand::-webkit-scrollbar{display:none}
+.bt-card{position:relative;width:clamp(64px,6.6vw,92px);flex:0 0 auto;cursor:pointer;
+  transition:transform var(--e-mid) var(--e-ez-out),opacity var(--e-mid) var(--e-ez)}
+.bt-card:hover{transform:translateY(-14px)}
+.bt-card.playable .card{border-color:var(--e-good)}
+.bt-card.dear{opacity:.4;cursor:not-allowed}
+.bt-card.dear:hover{transform:none}
+.bt-card.played{opacity:0;transform:translateY(-40px) scale(.9);pointer-events:none}
+.bt-acts{display:flex;gap:10px;align-items:center;flex:0 0 auto}
+
+/* --- the narrator --- */
+.bt-say{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:30;
+  width:min(520px,86vw);padding:clamp(20px,2.6vw,30px);background:var(--e-ink);
+  border:1px solid var(--e-rule);border-left:2px solid var(--e-oxide);
+  opacity:0;pointer-events:none;transition:opacity var(--e-mid) var(--e-ez);
+  box-shadow:0 50px 100px -40px #000}
+.bt-say.on{opacity:1;pointer-events:auto}
+.bt-say .k{font-family:var(--e-grotesk);font-size:9px;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--e-oxide)}
+.bt-say .t{font-family:var(--e-serif);font-size:clamp(15px,1.7vw,18px);line-height:1.6;
+  color:var(--e-paper-2);margin-top:12px}
+.bt-say .t b{color:var(--e-paper);font-weight:500}
+.bt-say .hint{font-family:var(--e-grotesk);font-size:9.5px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--e-paper-4);margin-top:16px}
+.bt-log{position:absolute;left:var(--e-pad);bottom:clamp(96px,13vh,140px);z-index:12;
+  font-family:var(--e-grotesk);font-size:10.5px;color:var(--e-paper-4);pointer-events:none;
+  max-width:34ch;line-height:1.7}
+.bt-log div{opacity:0;animation:sf .6s ease forwards}
+
+@media(max-width:820px){
+  .bt-stats{gap:12px}
+  .bt-who .sub{display:none}
+  .bt-log{display:none}
+}
+
+/* ============================================================
+   VINTAGE GAME MATERIALS
+   Scoped to every place AFTER loading. The opening vault is
+   deliberately untouched. Walnut, vellum, brass, sealing wax.
+   ============================================================ */
+/* preserve the original loading typography as well as its layout */
+#s-loading{font-family:var(--lore)}
+#s-gate,#s-covenant,#s-firstpack,#s-lobby,#s-battle,.screen,#insp,#settings{
+  --scratch:repeating-linear-gradient(96deg,transparent 0 17px,rgba(214,177,111,.018) 18px 19px);
+}
+#s-gate:after,#s-covenant:after,#s-firstpack:after,#s-lobby:after,#s-battle:after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.26;
+  background-image:
+    linear-gradient(rgba(52,30,15,.18),rgba(52,30,15,.18)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.35' numOctaves='4' seed='9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light}
+#s-gate>*:not(.fog),#s-covenant>*:not(.fog),#s-firstpack>*:not(.fog),
+#s-lobby>*:not(.fog):not(.shaft):not(.hall-floor):not(.hearthglow),#s-battle>*{z-index:1}
+
+/* the form becomes a ledger opened on the table */
+.e-panel{padding:clamp(24px,4.5vw,60px);position:relative;
+  background:
+    linear-gradient(90deg,rgba(9,5,3,.45),transparent 6%,transparent 94%,rgba(9,5,3,.5)),
+    linear-gradient(155deg,rgba(74,48,27,.22),rgba(15,9,5,.55));
+  border:1px solid rgba(176,138,78,.28);
+  box-shadow:0 40px 90px -30px #000,inset 0 0 0 7px rgba(7,4,2,.32),
+    inset 0 0 0 8px rgba(176,138,78,.09)}
+.e-panel:before,.e-panel:after{content:"◆";position:absolute;color:var(--e-brass);font-size:8px;opacity:.55}
+.e-panel:before{top:15px;left:16px}.e-panel:after{right:16px;bottom:15px}
+.e-folio{color:var(--e-brass);text-shadow:0 1px #000}
+.e-form{border-left-color:rgba(176,138,78,.32)}
+.e-input{color:var(--e-paper);border-bottom-color:rgba(176,138,78,.4)}
+.e-input:focus{border-bottom-color:var(--e-brass-lt)}
+.e-cta{background:linear-gradient(180deg,#AD462C,#752316);border-color:#C26B46;color:#F0D8B0;
+  text-shadow:0 1px #3A100A;box-shadow:inset 0 1px rgba(255,220,170,.2),0 4px 12px rgba(0,0,0,.28)}
+.e-cta:hover:not([disabled]){background:linear-gradient(180deg,#C45B38,#8B2B1B);border-color:#D47B55}
+
+/* champion plates read as hand-coloured bestiary engravings */
+.card{background:
+  linear-gradient(rgba(24,15,9,.1),rgba(24,15,9,.22)),
+  repeating-linear-gradient(0deg,rgba(255,245,216,.014) 0 1px,transparent 1px 4px),
+  #1B120B;
+  border-color:rgba(176,138,78,.38);
+  box-shadow:0 13px 22px -12px #000,inset 0 0 0 2px rgba(6,3,2,.48),
+    inset 0 0 0 3px rgba(176,138,78,.1)}
+.card .plate-rule{border-color:rgba(208,176,114,.23)}
+.card .c-fig{background:
+  radial-gradient(70% 60% at 50% 42%,var(--fw,rgba(155,56,35,.12)),transparent 72%),
+  repeating-linear-gradient(170deg,rgba(231,213,175,.025) 0 1px,transparent 1px 5px),
+  linear-gradient(180deg,#16100B,#080604)}
+.card .c-top:after{content:"✦";position:absolute;left:50%;top:11px;transform:translateX(-50%);
+  font-size:6px;color:var(--e-brass);opacity:.55}
+.card .c-cost{color:var(--e-brass-lt)}
+.card.r-M,.card.r-L{border-color:rgba(208,176,114,.62);box-shadow:0 13px 22px -12px #000,
+  inset 0 0 0 2px rgba(6,3,2,.5),inset 0 0 0 3px rgba(208,176,114,.2)}
+
+/* hall becomes the face of an antique cabinet/game board */
+.hall{background:
+  radial-gradient(100% 90% at 50% 108%,rgba(129,53,24,.23),transparent 58%),
+  linear-gradient(90deg,rgba(9,5,3,.3),transparent 10%,transparent 90%,rgba(9,5,3,.3)),
+  repeating-linear-gradient(91deg,rgba(136,88,46,.025) 0 2px,transparent 2px 22px),
+  linear-gradient(180deg,rgba(25,15,8,.95),rgba(12,8,5,.91) 48%,rgba(8,5,3,.97))}
+.mast{padding-top:clamp(17px,2vw,25px);padding-bottom:clamp(11px,1.3vw,15px);
+  border-bottom:1px solid rgba(176,138,78,.28);
+  box-shadow:0 10px 25px -22px #000}
+.mast .crest{color:var(--e-brass-lt);filter:drop-shadow(0 2px 3px #000)}
+.mast .title{color:var(--e-paper);text-shadow:0 2px 1px #000,0 0 16px rgba(176,138,78,.16)}
+.mast .edition{color:rgba(208,176,114,.55);border-left-color:rgba(176,138,78,.32)}
+.m-ico{border-color:rgba(176,138,78,.34);color:var(--e-brass)}
+.m-ico:hover{border-color:var(--e-brass-lt);color:var(--e-brass-lt);
+  box-shadow:inset 0 0 12px rgba(176,138,78,.1)}
+.runhead{gap:0;margin-top:0;border-top:0;border-bottom-color:rgba(176,138,78,.31);
+  background:linear-gradient(180deg,rgba(55,34,18,.34),rgba(17,10,5,.34))}
+.rh{padding:12px clamp(13px,1.45vw,23px);border-right:1px solid rgba(176,138,78,.15)}
+.rh:first-child{border-left:1px solid rgba(176,138,78,.15)}
+.rh:hover{background:rgba(176,138,78,.055)}
+.rh.on{background:linear-gradient(180deg,rgba(176,138,78,.09),transparent)}
+.rh.on:after{height:3px;background:linear-gradient(90deg,transparent,var(--e-brass),transparent)}
+.lede{position:relative;padding:clamp(22px,3vw,36px);border:1px solid rgba(176,138,78,.25);
+  background:linear-gradient(135deg,rgba(58,36,20,.18),rgba(8,5,3,.38));
+  box-shadow:inset 0 0 0 6px rgba(5,3,2,.28),inset 0 0 0 7px rgba(176,138,78,.07)}
+.lede:before{content:"THE FIELD RECORD";position:absolute;right:13px;top:50%;
+  writing-mode:vertical-rl;transform:translateY(-50%);font-family:var(--e-grotesk);
+  font-size:7px;font-weight:700;letter-spacing:.32em;color:rgba(176,138,78,.26)}
+.lede .kicker{color:var(--e-brass-lt)}
+.lede .quote{border-left-color:var(--e-brass);color:rgba(231,213,175,.66)}
+.blk{padding:clamp(16px,2vw,24px);border:1px solid rgba(176,138,78,.16);
+  background:linear-gradient(160deg,rgba(47,29,15,.15),rgba(7,4,2,.16))}
+.blk-h .t{color:var(--e-brass-lt)}
+.blk-h .ln,.task,.tally,.lede .figs{border-color:rgba(176,138,78,.22)}
+.notice{border-color:rgba(155,56,35,.58);background:
+  radial-gradient(100% 90% at 0 100%,rgba(155,56,35,.16),transparent 70%),
+  linear-gradient(145deg,rgba(58,31,17,.32),rgba(9,5,3,.48));
+  box-shadow:inset 0 0 0 5px rgba(6,3,2,.28),inset 0 0 0 6px rgba(176,138,78,.08)}
+.notice .k{color:var(--e-brass-lt)}
+
+/* chapter screens are vellum catalogues set inside the cabinet */
+.screen{background:
+  radial-gradient(80% 60% at 50% -8%,rgba(132,78,37,.1),transparent 68%),
+  repeating-linear-gradient(94deg,rgba(205,169,104,.014) 0 1px,transparent 1px 18px),
+  linear-gradient(180deg,rgba(22,14,8,.98),rgba(12,8,5,.97) 55%,rgba(7,4,3,.99))}
+.schead{border-bottom-color:rgba(176,138,78,.3);background:
+  linear-gradient(180deg,rgba(58,36,20,.28),rgba(15,9,5,.12))}
+.schead h2{color:var(--e-paper);text-shadow:0 2px 2px #000}
+.back{border-color:rgba(176,138,78,.34);color:var(--e-brass-lt)}
+.back:hover{border-color:var(--e-brass-lt);background:rgba(176,138,78,.08)}
+.rail{background:linear-gradient(90deg,rgba(54,32,16,.2),transparent);
+  border-right-color:rgba(176,138,78,.25)}
+.rail h4{color:var(--e-brass);border-bottom-color:rgba(176,138,78,.2)}
+.tick .sw{border-color:rgba(176,138,78,.4)}
+.wares{border-top-color:rgba(176,138,78,.3)}
+.wares:hover{border-top-color:var(--e-brass-lt)}
+
+/* the actual game table */
+#s-battle{background:
+  radial-gradient(90% 65% at 50% 50%,rgba(76,44,20,.23),transparent 74%),
+  repeating-linear-gradient(90deg,rgba(167,111,56,.025) 0 2px,transparent 2px 19px),
+  linear-gradient(180deg,#160E08,#0B0704 48%,#080503)}
+.bt:before{content:"";position:absolute;inset:8px;pointer-events:none;
+  border:1px solid rgba(176,138,78,.16);box-shadow:inset 0 0 0 5px rgba(3,2,1,.24)}
+.bt-who .mk{color:var(--e-brass)}
+.bt-marks i{transform:rotate(45deg);border-color:rgba(176,138,78,.45);background:#130C07}
+.bt-marks i.lit{background:linear-gradient(135deg,#B94A2C,#6A2115);border-color:#CD7755;
+  box-shadow:0 0 10px rgba(155,56,35,.5)}
+.bt-rule{background:linear-gradient(90deg,transparent,rgba(176,138,78,.32) 15%,
+  rgba(176,138,78,.32) 85%,transparent)}
+.bt-rule:before,.bt-rule:after{content:"◆";position:absolute;top:50%;transform:translateY(-52%);
+  color:var(--e-brass);font-size:6px}.bt-rule:before{left:12%}.bt-rule:after{right:12%}
+.bt-rule .turn{background:#0D0804;color:var(--e-brass)}
+.bt-aether i{border-color:rgba(176,138,78,.5);transform:skewX(-7deg);
+  background:linear-gradient(180deg,#171008,#090603)}
+.bt-aether i.full{background:linear-gradient(180deg,#C59D59,#765527);border-color:#D8B876;
+  box-shadow:0 0 10px rgba(176,138,78,.28)}
+.bt-say{background:
+  linear-gradient(90deg,rgba(56,36,19,.15),transparent),#160F09;
+  border-color:rgba(176,138,78,.36);border-left-color:var(--e-brass);
+  box-shadow:0 50px 100px -40px #000,inset 0 0 0 6px rgba(4,2,1,.3)}
+.bt-say .k{color:var(--e-brass-lt)}
+
+/* tactile brass controls */
+.e-act,.rite{border-color:rgba(176,138,78,.42);color:var(--e-brass-lt);
+  background:linear-gradient(180deg,rgba(68,43,23,.38),rgba(20,12,6,.2));
+  box-shadow:inset 0 1px rgba(233,207,155,.07)}
+.e-act:hover,.rite:hover{border-color:var(--e-brass-lt);color:var(--e-paper);
+  background:linear-gradient(180deg,rgba(101,67,34,.42),rgba(30,18,9,.3))}
+.e-act.solid,.rite.grave{background:linear-gradient(180deg,#AA432A,#702116);
+  border-color:#C26B46;color:#F0D8B0;text-shadow:0 1px #3A100A}
+.e-act.solid:hover,.rite.grave:hover{background:linear-gradient(180deg,#C45B38,#87291A);
+  border-color:#D47B55;color:#FFE1B5}
+
+@media(max-width:640px){
+  .lede{padding:18px}.lede:before{display:none}
+  .blk{padding:14px}
+  .rh{padding-left:12px;padding-right:12px}
 }
 </style>
 </head>
@@ -1088,15 +1632,20 @@ details.deep .b{padding-top:14px;font-size:14.5px;line-height:1.75;color:var(--i
   <div class="scene" id="s-gate">
     <div class="e-wrap">
       <div class="e-panel">
-        <div class="e-crest" id="gateCrest"></div>
-        <div id="gateRemembered"></div>
-        <div class="e-title" id="gateTitle">Welcome to Elaris</div>
-        <div class="e-sub" id="gateSub">Sign in, or create an account to begin.</div>
-        <div class="g-tabs" style="margin-top:20px">
-          <div class="g-tab on" data-tab="up">Create account</div>
-          <div class="g-tab" data-tab="in">Sign in</div>
+        <div class="e-lede">
+          <div class="e-crest" id="gateCrest"></div>
+          <div class="e-folio">Vol. I · The Door</div>
+          <div class="e-title" id="gateTitle">Welcome to <em>Elaris</em></div>
+          <div class="e-sub" id="gateSub">Sign in, or create an account to begin.</div>
         </div>
-        <div id="gateBody"></div>
+        <div class="e-form">
+          <div id="gateRemembered"></div>
+          <div class="g-tabs">
+            <div class="g-tab on" data-tab="up">Create account</div>
+            <div class="g-tab" data-tab="in">Sign in</div>
+          </div>
+          <div id="gateBody"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1105,13 +1654,18 @@ details.deep .b{padding-top:14px;font-size:14.5px;line-height:1.75;color:var(--i
   <div class="scene" id="s-covenant">
     <div class="e-wrap">
       <div class="e-panel">
-        <div class="e-crest" id="nmCrest"></div>
-        <div class="e-title">What should we call you?</div>
-        <div class="e-sub">This is the name other players will see.</div>
-        <div class="e-field"><label>Display name</label>
-          <input class="e-input" id="covName" maxlength="18" placeholder="Enter a name" autocomplete="off" spellcheck="false"></div>
-        <div class="e-hint" id="nmHint">At least 2 characters</div>
-        <button class="e-cta" id="doSeal" disabled>Continue</button>
+        <div class="e-lede">
+          <div class="e-crest" id="nmCrest"></div>
+          <div class="e-folio">Vol. I · The Signature</div>
+          <div class="e-title">What should we <em>call</em> you?</div>
+          <div class="e-sub">This is the name other players will see, and the name the ledger will keep.</div>
+        </div>
+        <div class="e-form">
+          <div class="e-field"><label>Display name</label>
+            <input class="e-input" id="covName" maxlength="18" placeholder="Enter a name" autocomplete="off" spellcheck="false"></div>
+          <div class="e-hint" id="nmHint">At least 2 characters</div>
+          <button class="e-cta" id="doSeal" disabled>Continue</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1120,18 +1674,19 @@ details.deep .b{padding-top:14px;font-size:14.5px;line-height:1.75;color:var(--i
   <div class="scene" id="s-firstpack">
     <div class="fog"></div><div class="fog b"></div>
     <div class="pick-head">
-      <div class="step">Step 2 of 2</div>
-      <h2>Pick your first card</h2>
-      <div class="pick-sub">Tap one. It becomes your champion and we&rsquo;ll start a match.</div>
+      <div>
+        <div class="step">Plate Index · Step 2 of 2</div>
+        <h2>Choose your first record</h2>
+      </div>
+      <div class="pick-sub">One plate becomes your champion. A deck is bound around it, and the first trial begins.</div>
     </div>
     <div class="pick-rail"><div class="pick-row" id="pickRow"></div></div>
     <div class="pick-foot" id="pickFoot"></div>
   </div>
 
-  <!-- 04b TUTORIAL -->
-  <div class="scene" id="s-tutorial">
-    <div class="fog"></div>
-    <div class="tut"></div>
+  <!-- 04 THE TRIAL -->
+  <div class="scene" id="s-battle">
+    <div class="bt" id="btRoot"></div>
   </div>
 
   <!-- 05 LOBBY -->
@@ -1534,26 +2089,133 @@ const P={
   name:"",seed:101,level:1,xp:0,xpMax:600,points:0,shards:0,
   owned:{},packs:0,rank:"Unranked",rating:0,wins:0,losses:0,
   champ:null,skin:{},deckName:"First Binding",deck:[],
-  reduced:false,new:true
+  reduced:false,hicon:false,big:false,new:true
 };
 function owned(){return CARDS.filter(c=>P.owned[c.id]>0)}
 function toast(m){const t=$("#toast");const d=document.createElement("div");d.className="tm";d.textContent=m;t.appendChild(d);
   setTimeout(()=>{d.style.transition="opacity .8s";d.style.opacity=0;setTimeout(()=>d.remove(),800)},2200)}
 
 /* ============================================================
-   THE CARD ELEMENT — the supplied artwork, unmodified
+   THE ENGRAVED FIGURE — generated per record.
+   A deterministic hash of the card id drives a small drawing
+   machine, so every one of the 38 records has its own plate and
+   the same record always redraws identically.
+   ============================================================ */
+function hashOf(str){
+  let h=2166136261;
+  for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}
+  return h>>>0;
+}
+/* the four factions are drawn with four different instruments */
+function figure(card){
+  const ink=FIGINK[card.a]||FIGINK.Civilization;
+  let s=hashOf(card.id);
+  const rnd=()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296};
+  const W=100,H=132,cx=50,cy=62;
+  let p="";
+
+  /* the ground: a horizon rule and a faint measuring grid */
+  p+=`<line x1="8" y1="${(96+rnd()*8).toFixed(1)}" x2="92" y2="${(96+rnd()*8).toFixed(1)}"
+       stroke="${ink}" stroke-width=".5" opacity=".3"/>`;
+  for(let i=0;i<3;i++){
+    const y=104+i*7;
+    p+=`<line x1="${(14+rnd()*10).toFixed(0)}" y1="${y}" x2="${(86-rnd()*10).toFixed(0)}" y2="${y}"
+        stroke="${ink}" stroke-width=".35" opacity="${(.18-i*.05).toFixed(2)}"/>`;
+  }
+
+  /* the specimen body — silhouette built from the seed */
+  const kind=card.t==="Unit"?(hashOf(card.race)%4):(card.t==="Spell"?4:5);
+  if(kind===0){        /* standing figure — a ranked column of plates */
+    const w=15+rnd()*8;
+    p+=`<path d="M${cx} 26 L${cx+w} ${cy+6} L${cx} ${cy+34} L${cx-w} ${cy+6} Z"
+         fill="none" stroke="${ink}" stroke-width=".9" opacity=".85"/>`;
+    p+=`<circle cx="${cx}" cy="22" r="${(6+rnd()*3).toFixed(1)}" fill="none" stroke="${ink}" stroke-width=".9" opacity=".9"/>`;
+    for(let i=0;i<4;i++)p+=`<line x1="${cx-w+3+i*2}" y1="${cy+2+i*5}" x2="${cx+w-3-i*2}" y2="${cy+2+i*5}"
+      stroke="${ink}" stroke-width=".4" opacity=".4"/>`;
+  }else if(kind===1){  /* winged / crowned — radiating arcs */
+    for(let i=0;i<7;i++){
+      const a=-Math.PI/2+(i-3)*.34, r=26+rnd()*16;
+      p+=`<line x1="${cx}" y1="${cy+8}" x2="${(cx+Math.cos(a)*r).toFixed(1)}" y2="${(cy+8+Math.sin(a)*r).toFixed(1)}"
+           stroke="${ink}" stroke-width=".7" opacity=".7"/>`;
+    }
+    p+=`<circle cx="${cx}" cy="${cy+8}" r="${(9+rnd()*4).toFixed(1)}" fill="none" stroke="${ink}" stroke-width="1" opacity=".95"/>`;
+    p+=`<circle cx="${cx}" cy="${cy+8}" r="${(15+rnd()*5).toFixed(1)}" fill="none" stroke="${ink}" stroke-width=".4" opacity=".4"/>`;
+  }else if(kind===2){  /* growth — a branching stem */
+    const draw=(x,y,ang,len,d)=>{
+      if(d>4||len<3)return;
+      const x2=x+Math.cos(ang)*len,y2=y+Math.sin(ang)*len;
+      p+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"
+           stroke="${ink}" stroke-width="${(1.1-d*.2).toFixed(2)}" opacity="${(.9-d*.13).toFixed(2)}"/>`;
+      draw(x2,y2,ang-.42-rnd()*.3,len*.72,d+1);
+      draw(x2,y2,ang+.42+rnd()*.3,len*.72,d+1);
+    };
+    draw(cx,100,-Math.PI/2,22+rnd()*8,0);
+  }else if(kind===3){  /* massed — a brood of small marks */
+    for(let i=0;i<13;i++){
+      const a=rnd()*6.283,r=rnd()*30;
+      p+=`<circle cx="${(cx+Math.cos(a)*r).toFixed(1)}" cy="${(cy+Math.sin(a)*r*.8).toFixed(1)}"
+           r="${(1.4+rnd()*3.4).toFixed(1)}" fill="none" stroke="${ink}" stroke-width=".65" opacity="${(.4+rnd()*.5).toFixed(2)}"/>`;
+    }
+  }else if(kind===4){  /* spell — an inscribed working */
+    const sides=5+Math.floor(rnd()*3);
+    let poly="";
+    for(let i=0;i<=sides;i++){const a=-Math.PI/2+i/sides*6.283;
+      poly+=(i?"L":"M")+(cx+Math.cos(a)*26).toFixed(1)+" "+(cy+Math.sin(a)*26).toFixed(1)}
+    p+=`<path d="${poly}Z" fill="none" stroke="${ink}" stroke-width=".7" opacity=".75"/>`;
+    for(let i=0;i<sides;i++){const a=-Math.PI/2+i/sides*6.283;
+      p+=`<line x1="${cx}" y1="${cy}" x2="${(cx+Math.cos(a)*26).toFixed(1)}" y2="${(cy+Math.sin(a)*26).toFixed(1)}"
+           stroke="${ink}" stroke-width=".35" opacity=".45"/>`}
+    p+=`<circle cx="${cx}" cy="${cy}" r="${(5+rnd()*4).toFixed(1)}" fill="${ink}" opacity=".22"/>`;
+  }else{               /* relic — a reliquary vessel */
+    p+=`<rect x="${cx-14}" y="${cy-12}" width="28" height="34" fill="none" stroke="${ink}" stroke-width=".9" opacity=".85"/>`;
+    p+=`<path d="M${cx-18} ${cy-12} L${cx} ${cy-28} L${cx+18} ${cy-12}Z" fill="none" stroke="${ink}" stroke-width=".9" opacity=".85"/>`;
+    p+=`<circle cx="${cx}" cy="${cy+4}" r="${(5+rnd()*3).toFixed(1)}" fill="none" stroke="${ink}" stroke-width=".7" opacity=".8"/>`;
+  }
+
+  /* hatching — the engraver's shading, seeded so it never repeats */
+  const hatch=6+Math.floor(rnd()*7);
+  for(let i=0;i<hatch;i++){
+    const x=10+rnd()*80,y=18+rnd()*74,l=4+rnd()*11;
+    p+=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+l*.5).toFixed(1)}" y2="${(y+l).toFixed(1)}"
+         stroke="${ink}" stroke-width=".3" opacity="${(.1+rnd()*.2).toFixed(2)}"/>`;
+  }
+  /* the registration cross every printed plate carries */
+  p+=`<path d="M50 8v6M47 11h6" stroke="${ink}" stroke-width=".4" opacity=".5"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${p}</svg>`;
+}
+const FIGINK={Civilization:"#8FB4D4",Warfare:"#E0705F",Nature:"#9FBE72",Dark:"#B18FD8"};
+
+/* ============================================================
+   THE CARD ELEMENT — a typeset specimen plate
    ============================================================ */
 function cardEl(card,o={}){
   const F=FACTION[card.a]||FACTION.Civilization;
   const d=document.createElement("div");
-  d.className="card"+(o.sm?" sm":"")+(o.cls?" "+o.cls:"");
+  d.className="card f-"+card.a+" r-"+card.r+(o.sm?" sm":"")+(o.cls?" "+o.cls:"");
   d.style.setProperty("--ag",F.glow);
   const own=P.owned[card.id]||0;
   if(o.coll&&own===0)d.classList.add("locked");
   d.setAttribute("role","img");
   d.setAttribute("aria-label",card.n);
   d.title=card.n;
-  if(o.coll)d.innerHTML=`<div class="own">${own?"×"+own:"—"}</div>`;
+  const skin=P.skin[card.id];
+  const isUnit=card.pow!==null&&card.pow!==undefined;
+  d.innerHTML=`
+    <div class="plate-rule"></div>
+    <div class="c-top">
+      <div class="c-set">Set 001<br>${RAR[card.r]||""}</div>
+      <div class="c-cost">${card.cost}</div>
+    </div>
+    <div class="c-fig"${skin&&SKINFX[skin]?` style="filter:${SKINFX[skin]}"`:""}>${figure(card)}</div>
+    <div class="c-name">${card.n}</div>
+    <div class="c-role">${card.race} · ${card.role}</div>
+    <div class="c-foot">
+      ${isUnit?`<span class="st">P</span><span class="vv">${card.pow}</span>
+        <span class="sp"></span>
+        <span class="st">H</span><span class="vv">${card.hp}</span>`
+       :`<span class="st">${card.t}</span><span class="sp"></span>`}
+    </div>
+    ${o.coll?`<div class="own">${own?"×"+own:"—"}</div>`:""}`;
   d.addEventListener("mouseenter",()=>awaken(card.a));
   if(!o.noclick)d.addEventListener("click",()=>inspect(card));
   return d;
@@ -1754,13 +2416,14 @@ function saveGame(){
   try{localStorage.setItem(SAVE_KEY,JSON.stringify({
     name:P.name,seed:P.seed,level:P.level,xp:P.xp,xpMax:P.xpMax,points:P.points,shards:P.shards,
     owned:P.owned,packs:P.packs,rank:P.rank,rating:P.rating,wins:P.wins,losses:P.losses,
-    champ:P.champ,skin:P.skin,deckName:P.deckName,deck:P.deck
+    champ:P.champ,skin:P.skin,deckName:P.deckName,deck:P.deck,
+    reduced:P.reduced,hicon:P.hicon,big:P.big
   }))}catch(e){}
 }
 function loadGame(){
   try{const r=localStorage.getItem(SAVE_KEY);if(!r)return null;return JSON.parse(r)}catch(e){return null}
 }
-function applySave(s){Object.assign(P,s);P.new=false}
+function applySave(s){Object.assign(P,s);P.new=false;applyPrefs()}
 
 function buildGate(){
   const gc=$("#gateCrest");
@@ -1771,7 +2434,7 @@ function buildGate(){
   /* a saved player is offered a one-click continue and NEVER
      sent back through champion selection */
   if(saved&&saved.name){
-    $("#gateTitle").textContent="Welcome back";
+    $("#gateTitle").innerHTML="Welcome <em>back</em>";
     $("#gateSub").textContent="Continue where you left off.";
     rem.innerHTML=`<button class="g-return" id="remBtn">
         <div class="av">
@@ -1793,7 +2456,7 @@ function buildGate(){
     $("#remBtn").onclick=()=>{ applySave(saved); enterHallDirect(); };
   }else{
     rem.innerHTML="";
-    $("#gateTitle").textContent="Welcome to Elaris";
+    $("#gateTitle").innerHTML="Welcome to <em>Elaris</em>";
     $("#gateSub").textContent="Create an account to begin, or sign in.";
   }
 
@@ -2032,80 +2695,11 @@ const NAVICON={
    THE HALL — calm. one purpose.
    ============================================================ */
 /* ============================================================
-   THE HALL — dashboard
-   Everything reads from CARDS / P. No duplicated values.
+   THE HALL — the front page
+   Everything reads from CARDS / P. No duplicated values,
+   no invented figures.
    ============================================================ */
-const RAILICON={
-  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
-  roster:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.7-4.3 3.7-6.4 7.5-6.4s6.8 2.1 7.5 6.4"/></svg>',
-  decks:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="3" width="12" height="17" rx="2"/><path d="M4 6v14h12"/></svg>',
-  packs:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 8h16v12H4z"/><path d="M4 8 12 3l8 5M12 3v17"/></svg>',
-  quests:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12v18H6z"/><path d="M10 8h6M10 12h6M10 16h4"/></svg>',
-  shop:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18l-1.6 13H4.6z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>',
-  friends:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c.6-4 3.2-6 6.5-6s5.9 2 6.5 6M16 5.6a3.2 3.2 0 0 1 0 6"/></svg>',
-  settings:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path d="M19.2 14.6a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1 2 2 0 1 1-4 0 1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7 2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1 2 2 0 1 1 4 0 1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7 2 2 0 1 1 0 4Z"/></svg>'
-};
-/* faction chip icons — element shown only here, never on the frame */
-const FCHIP={
-  Civilization:'<svg viewBox="0 0 24 24" fill="none" stroke="#3D8BFF" stroke-width="2"><path d="M5 21V10l7-6 7 6v11Z"/><path d="M10 21v-6h4v6"/></svg>',
-  Warfare:'<svg viewBox="0 0 24 24" fill="none" stroke="#FF4757" stroke-width="2"><path d="M7 6l10 12M17 6 7 18"/></svg>',
-  Nature:'<svg viewBox="0 0 24 24" fill="none" stroke="#5DFF9F" stroke-width="2"><path d="M12 21V9"/><path d="M12 14c-4 0-6-2.4-6-6 4 0 6 2.4 6 6ZM12 16c4 0 6-2.4 6-6-4 0-6 2.4-6 6Z"/></svg>',
-  Dark:'<svg viewBox="0 0 24 24" fill="none" stroke="#A66BFF" stroke-width="2"><path d="M8 11c0-3.4 1.8-5 4-5s4 1.6 4 5c0 2.4-1.4 3.2-1.4 5H9.4C9.4 14.2 8 13.4 8 11Z"/><path d="M10 21h4"/></svg>'
-};
-const STAR='<svg viewBox="0 0 24 24"><path d="m12 3 2.7 6.1 6.3.6-4.8 4.2 1.5 6.1L12 16.8 6.3 20l1.5-6.1L3 9.7l6.3-.6z"/></svg>';
-
-function rarityClass(r){ return r==="M"||r==="L" ? "legendary" : (r==="A"||r==="R" ? "rare" : "common") }
-function starCount(r){ return {C:2,R:3,A:4,L:4,M:5}[r]||3 }
 function powerOf(c){ return (c.pow||0)*180 + (c.hp||0)*120 + c.cost*90 }
-
-/* small svg helpers ---------------------------------------- */
-function radarSVG(vals,size,col){
-  col=col||"#3D8BFF";
-  // vals: 5 numbers 0..1 in order ATK DEF SPD CRI HP
-  const s=size||132,c=s/2,R=s*0.34;
-  const labs=["ATK","DEF","SPD","CRI","HP"];
-  const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/5;
-    return [c+Math.cos(a)*r,c+Math.sin(a)*r]};
-  let rings="";
-  [1,.66,.33].forEach(k=>{
-    const p=labs.map((_,i)=>pt(i,R*k).map(n=>n.toFixed(1)).join(",")).join(" ");
-    rings+=`<polygon points="${p}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>`;
-  });
-  let spokes="";
-  labs.forEach((_,i)=>{const[x,y]=pt(i,R);
-    spokes+=`<line x1="${c}" y1="${c}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.06)"/>`});
-  const poly=vals.map((v,i)=>pt(i,R*Math.max(.12,v)).map(n=>n.toFixed(1)).join(",")).join(" ");
-  let text="";
-  labs.forEach((l,i)=>{const[x,y]=pt(i,R+15);
-    text+=`<text x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" text-anchor="middle"
-      font-family="var(--ui)" font-size="9" font-weight="700" fill="#5C6370">${l}</text>`});
-  return `<svg viewBox="0 0 ${s} ${s}" width="${s}" height="${s}" class="radar-svg">
-    ${rings}${spokes}
-    <polygon class="radar-poly" points="${poly}" fill="${col}33" stroke="${col}" stroke-width="1.8"/>
-    ${text}</svg>`;
-}
-function donutSVG(pct,size,col){
-  col=col||"#5DFF9F";
-  const s=size||62,c=s/2,r=c-5,C=2*Math.PI*r;
-  return `<svg viewBox="0 0 ${s} ${s}" width="${s}" height="${s}">
-    <circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="5"/>
-    <circle class="donut-arc" cx="${c}" cy="${c}" r="${r}" fill="none" stroke="${col}" stroke-width="5"
-      stroke-linecap="round" transform="rotate(-90 ${c} ${c})"
-      stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-pct)).toFixed(1)}"/></svg>`;
-}
-function sparkSVG(pts,w,h,col){
-  col=col||"#FF3DBE";
-  const W=w||212,H=h||44;
-  const mx=Math.max(...pts),mn=Math.min(...pts);
-  const X=i=>i/(pts.length-1)*(W-6)+3;
-  const Y=v=>H-4-((v-mn)/((mx-mn)||1))*(H-12);
-  const d=pts.map((v,i)=>`${i?"L":"M"}${X(i).toFixed(1)} ${Y(v).toFixed(1)}`).join("");
-  const lx=X(pts.length-1),ly=Y(pts[pts.length-1]);
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}">
-    <path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>
-    <circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="3.6" fill="${col}"/>
-    <circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="7" fill="${col}3a"/></svg>`;
-}
 
 /* which cards are on the shelf ------------------------------- */
 function rosterCards(){
@@ -2124,216 +2718,201 @@ function buildHall(){
   r.className="hall";
   const ch=BY[P.champ]||CARDS[0];
   const xpPct=Math.min(1,P.xp/P.xpMax);
-  const list=rosterCards();
+  const held=owned();
+  const shelf=rosterCards();
+  const played=P.wins+P.losses;
 
-  const railItems=[
-    ["home","Home",null],
-    ["roster","Collection","collection"],
-    ["decks","Deck","decks"],
-    ["packs","Packs","packs"],
-    ["quests","Quests","ledger"],
-    ["shop","Shop","shop"],
-    ["friends","Friends","friends"]
+  /* the contents line — every destination, numbered like a folio */
+  const nav=[
+    ["collection","The Archive"],
+    ["decks","The Card Table"],
+    ["packs","The Chest"],
+    ["shop","The Merchant"],
+    ["ledger","The Ledger"],
+    ["rank","The Ladder"],
+    ["friends","The Board"]
+  ];
+
+  /* the aether curve of the bound deck — real, from P.deck */
+  const bucket=[0,0,0,0,0,0,0];
+  P.deck.forEach(id=>{const c=BY[id];if(c)bucket[Math.min(6,c.cost)]++});
+  const bMax=Math.max(1,...bucket);
+
+  /* the champion's proportions, measured against the whole set */
+  const units=CARDS.filter(c=>c.t==="Unit");
+  const mxP=Math.max(...units.map(c=>c.pow||0));
+  const mxH=Math.max(...units.map(c=>c.hp||0));
+  const mxC=Math.max(...units.map(c=>c.cost||1));
+  const prof=[
+    ["Pow",ch.pow||0,mxP],
+    ["Hp",ch.hp||0,mxH],
+    ["Cost",ch.cost||0,mxC],
+    ["Skills",(ch.sk||[]).length,3]
+  ];
+
+  /* standing tasks, all counted from real state */
+  const tasks=[
+    ["Win three trials",Math.min(P.wins,3),3],
+    ["Catalogue twenty records",Math.min(held.length,20),20],
+    ["Bind a deck of forty",Math.min(P.deck.length,40),40]
   ];
 
   r.innerHTML=`
-  <!-- RAIL -->
-  <div class="rail">
-    <div class="logo">${elarisCrest({size:34})}</div>
-    ${railItems.map(([k,l,scr])=>`
-      <div class="rail-btn ${k==="home"?"on":""}" data-scr="${scr||""}">
-        ${RAILICON[k]}<span class="tip">${l}</span></div>`).join("")}
-    <div class="spacer"></div>
-    <div class="rail-btn" data-settings="1">${RAILICON.settings}<span class="tip">Settings</span></div>
+  <!-- MASTHEAD -->
+  <div class="mast">
+    <div class="crest">${elarisCrest({size:34})}</div>
+    <div class="title">ELARIS</div>
+    <div class="edition">Set 001 · Waking of the Veilwood<br>${P.name||"Recorder"} · Level ${P.level} · ${P.rank}</div>
+    <div class="purse">
+      <button class="m-coin" data-scr="shop"><span class="v">${P.points.toLocaleString()}</span><span class="u">Embers</span></button>
+      <button class="m-coin" data-scr="shop"><span class="v">${P.shards}</span><span class="u">Sigils</span></button>
+      <button class="m-ico" data-scr="profile" title="Your mark">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.7-4.3 3.7-6.4 7.5-6.4s6.8 2.1 7.5 6.4"/></svg></button>
+      <button class="m-ico" data-settings="1" title="Settings">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8 2 2 0 1 1-2.8 2.8 1.6 1.6 0 0 0-2.7 1.1 2 2 0 1 1-4 0 1.6 1.6 0 0 0-2.7-1.1 2 2 0 1 1-2.8-2.8A1.6 1.6 0 0 0 3.6 14a2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.1-2.7 2 2 0 1 1 2.8-2.8A1.6 1.6 0 0 0 10.2 3.6a2 2 0 1 1 4 0A1.6 1.6 0 0 0 16.9 4.5a2 2 0 1 1 2.8 2.8A1.6 1.6 0 0 0 20.4 10a2 2 0 1 1 0 4Z"/></svg></button>
+    </div>
   </div>
 
-  <div class="hall-main">
-    <!-- TOP BAR -->
-    <div class="h-top">
-      <div class="h-you" data-scr="profile">
-        <div class="h-avatar">
-          <svg class="ring" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none"
-            stroke="rgba(255,255,255,.08)" stroke-width="3"/>
-            <circle cx="24" cy="24" r="22" fill="none" stroke="#00E5FF" stroke-width="3" stroke-linecap="round"
-              stroke-dasharray="${(2*Math.PI*22).toFixed(1)}"
-              stroke-dashoffset="${(2*Math.PI*22*(1-xpPct)).toFixed(1)}"/></svg>
-          <div class="face">${elarisCrest({size:22})}</div>
-        </div>
-        <div>
-          <div class="nm">${P.name||"Recorder"}</div>
-          <div class="lv">Level ${P.level} · ${P.rank}</div>
-        </div>
-      </div>
+  <!-- RUNNING HEAD -->
+  <div class="runhead">
+    <button class="rh on" data-home="1"><span class="n">00</span>The Hall</button>
+    ${nav.map(([k,l],i)=>`<button class="rh" data-scr="${k}"><span class="n">${String(i+1).padStart(2,"0")}</span>${l}</button>`).join("")}
+  </div>
 
-      <div class="h-xpwrap">
-        <div class="h-xprow"><span class="lbl">Level</span>
-          <span class="pct">${Math.round(xpPct*100)}%</span></div>
-        <div class="h-xpbar"><i data-w="${xpPct*100}"></i></div>
-        <div class="h-xpnum">${P.xp.toLocaleString()} / ${P.xpMax.toLocaleString()} XP</div>
-      </div>
-
-      <div class="h-purse">
-        <div class="h-coin" data-scr="shop">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10h5M9.5 14h5"/></svg>
-          <span class="v">${P.points.toLocaleString()}</span></div>
-        <div class="h-coin gem" data-scr="shop">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="1.8"><path d="m12 3 3 6 6 1.5-4.5 4 1 6.5L12 18l-5.5 3 1-6.5L3 10.5 9 9z"/></svg>
-          <span class="v">${P.shards}</span></div>
-        <button class="h-ico" data-settings="1">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path d="M19.2 14.6a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1 2 2 0 1 1-4 0 1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7 2 2 0 1 1 0-4 1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 2.7-1.1 2 2 0 1 1 4 0 1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7 2 2 0 1 1 0 4Z"/></svg>
-        </button>
+  <div class="page">
+    <!-- THE LEDE -->
+    <div class="lede f-${ch.a}">
+      <div class="plate" id="ledePlate"></div>
+      <div>
+        <div class="kicker">Your champion · ${FACTION_FULL[ch.a]}</div>
+        <h1>${ch.n.replace(/,(.*)$/,',<em>$1</em>')}</h1>
+        <div class="quote">${ch.fl}</div>
+        <div class="figs">
+          <div><div class="k">Aether</div><div class="v">${ch.cost}</div></div>
+          ${ch.pow!==null&&ch.pow!==undefined?`<div><div class="k">Power</div><div class="v">${ch.pow}</div></div>`:""}
+          ${ch.hp?`<div><div class="k">Health</div><div class="v">${ch.hp}</div></div>`:""}
+          <div><div class="k">Deck</div><div class="v">${P.deck.length}<small> / 40</small></div></div>
+          <div><div class="k">Held</div><div class="v">${held.length}<small> / ${CARDS.length}</small></div></div>
+          <div><div class="k">Level</div><div class="v">${P.level}<small> · ${Math.round(xpPct*100)}%</small></div></div>
+        </div>
+        <div class="acts">
+          <button class="e-act solid" data-play="1">Enter the trial</button>
+          <button class="e-act" data-scr="decks">Open the card table</button>
+          <button class="e-act quiet" data-scr="collection">Browse the archive →</button>
+        </div>
       </div>
     </div>
 
-    <!-- BODY -->
-    <div class="h-body">
-      <div class="h-left">
-        <div>
-          <div class="sec-label">Your champions</div>
-          <div class="roster" id="roster"></div>
-        </div>
+    <!-- LEFT COLUMN -->
+    <div class="col">
+      <div class="blk">
+        <div class="blk-h"><span class="t">Records on the shelf</span><span class="ln"></span>
+          <button class="more" data-scr="collection">All ${held.length} →</button></div>
+        <div class="shelf" id="shelf"></div>
+      </div>
 
-        <div>
-          <div class="sec-label">Quests &amp; missions</div>
-          <div class="panel quests">
-            ${[["Win trials",Math.min(P.wins,3),3],
-               ["Collect records",Math.min(owned().length,20),20],
-               ["Open a pack",P.packs?0:1,1]]
-              .map(([n,now,goal])=>`
-              <div class="quest">
-                <div class="qrow"><span class="qn">${n}</span>
-                  <span class="qc"><b>${now}</b>/${goal}</span></div>
-                <div class="qbar"><i data-w="${Math.min(100,now/goal*100)}"></i></div>
-              </div>`).join("")}
-          </div>
+      <div class="blk">
+        <div class="blk-h"><span class="t">Standing in the ledger</span><span class="ln"></span>
+          <button class="more" data-scr="ledger">The ledger →</button></div>
+        <div class="tasks">
+          ${tasks.map(([n,now,goal])=>`
+            <div class="task">
+              <span class="nm">${n}</span>
+              <span class="bar"><i data-w="${Math.min(100,now/goal*100)}"></i></span>
+              <span class="ct${now>=goal?" done":""}"><b>${now}</b> / ${goal}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col col-r">
+      <div class="blk">
+        <div class="blk-h"><span class="t">The record of trials</span><span class="ln"></span></div>
+        <div class="tally">
+          <div><div class="k">Won</div><div class="v">${P.wins}</div></div>
+          <div><div class="k">Lost</div><div class="v">${P.losses}</div></div>
+          <div><div class="k">Rate</div><div class="v${played&&P.wins/played>=.5?" warm":""}">${played?Math.round(P.wins/played*100):0}<small>%</small></div></div>
+          <div><div class="k">Rating</div><div class="v">${P.rating}</div></div>
         </div>
       </div>
 
-      <!-- ANALYTICS -->
-      <div class="h-right">
-        <div class="mini p-stats">
-          <div class="lbl">Champion stats</div>
-          <div class="radar" id="radarBox"></div>
+      <div class="blk f-${ch.a}">
+        <div class="blk-h"><span class="t">Proportions of the champion</span><span class="ln"></span></div>
+        <div class="profile">
+          ${prof.map(([k,v,m])=>`
+            <div class="pf"><span class="k">${k}</span>
+              <span class="tr"><i data-w="${Math.min(100,v/m*100)}"></i></span>
+              <span class="v">${v}</span></div>`).join("")}
         </div>
+      </div>
 
-        <div class="mini p-syn">
-          <div class="lbl">Deck synergy</div>
-          <div class="synergy">
-            <div class="donut">${donutSVG(.68,62,"#5DFF9F")}<div class="pct">68%</div></div>
-            <div>
-              <div class="team" id="teamAv"></div>
-              <div class="tx" style="margin-top:6px">Active deck</div>
-            </div>
-          </div>
+      <div class="blk">
+        <div class="blk-h"><span class="t">Aether curve of the deck</span><span class="ln"></span>
+          <button class="more" data-scr="decks">Edit →</button></div>
+        <div class="curve">
+          ${bucket.map((v,i)=>`<div class="b" data-h="${v/bMax*100}" style="height:0"><span>${i===6?"6+":i}</span></div>`).join("")}
         </div>
+        <div class="curve-foot">${P.deck.length>=40
+          ? "The covenant is whole."
+          : `${40-P.deck.length} more records must be bound.`}</div>
+      </div>
 
-        <div class="mini winrate p-win">
-          <div class="lbl">Win rate</div>
-          ${sparkSVG([38,42,40,51,47,58,55,62,60,65],212,44,"#FF3DBE")}
-          <div class="foot"><span class="a">${P.wins+P.losses?Math.round(P.wins/(P.wins+P.losses)*100):0}% wins</span>
-            <span class="b">Last 30 days</span></div>
-        </div>
-
-        <div class="mini urgent p-next">
-          <div class="lbl">Next match</div>
-          <div class="countdown" id="cdown">00:00:00:00</div>
-          <div class="c1">Ranked ladder</div>
-          <div class="c2">vs. Hesper of the Ninth Vigil</div>
-          <button class="cta" data-play="1">Play now</button>
-        </div>
+      <div class="notice">
+        <div class="k">The next trial</div>
+        <div class="t">Hesper of the Ninth Vigil</div>
+        <div class="s">She keeps the door, and she has not lost it yet.</div>
+        <button class="e-act solid" data-play="1">Take the trial</button>
       </div>
     </div>
   </div>`;
 
-  /* roster */
-  const rr=$("#roster");
-  list.forEach((c,i)=>{
-    const featured=c.id===ch.id;
-    const el=document.createElement("div");
-    el.className="rcard "+rarityClass(c.r)+(featured?" featured":"");
-    el.style.setProperty("--fc",FACTION[c.a].c);
-    const stars=starCount(c.r);
-    el.innerHTML=`
-      <div class="art">
-        <img src="cards/liora-sm.jpg" alt="${c.n}" loading="lazy">
-        <div class="chip">${FCHIP[c.a]}</div>
-      </div>
-      <div class="meta">
-        <div class="stars">${Array.from({length:5},(_,k)=>
-          `<span style="color:${k<stars?"#FFD700":"rgba(255,255,255,.14)"}">${STAR}</span>`).join("")}</div>
-        <div class="nm">${c.n.split(",")[0].toUpperCase()}</div>
-        <div class="ttl">${c.role}</div>
-        <div class="pw">Power: ${powerOf(c).toLocaleString()}</div>
-      </div>
-      ${featured?`
-        <div class="table">
-          <div><span class="k">Level</span><span class="v">${P.level}</span></div>
-          <div><span class="k">Class</span><span class="v">${c.role}</span></div>
-          <div><span class="k">HP</span><span class="v">${c.hp??"—"}</span></div>
-          <div><span class="k">ATK</span><span class="v">${c.pow??"—"}</span></div>
-          <div><span class="k">Faction</span><span class="v">${c.a}</span></div>
-        </div>`:`
-        <div class="strip"><span class="a">Details</span><span class="b">Lv ${P.level}</span></div>`}`;
-    el.addEventListener("click",()=>inspect(c));
-    rr.appendChild(el);
+  /* the lede plate */
+  const lp=$("#ledePlate");
+  if(lp){const c=cardEl(ch,{noclick:true});lp.appendChild(c);
+    lp.style.cursor="pointer";lp.onclick=()=>inspect(ch)}
+
+  /* the shelf */
+  const sh=$("#shelf");
+  shelf.forEach(c=>{
+    const slot=document.createElement("div");
+    slot.className="slot"+(c.id===ch.id?" is-champ":"");
+    slot.appendChild(cardEl(c,{noclick:true}));
+    const cap=document.createElement("div");
+    cap.className="cap";
+    cap.innerHTML=`<div class="n">${c.n}</div>
+      <div class="m">${c.id===ch.id?"Champion":c.race+" · "+c.role}</div>`;
+    slot.appendChild(cap);
+    slot.addEventListener("click",()=>inspect(c));
+    sh.appendChild(slot);
   });
 
-  /* radar from the champion's real numbers */
-  const mx=Math.max(...CARDS.filter(c=>c.t==="Unit").map(c=>c.pow||0));
-  const mh=Math.max(...CARDS.filter(c=>c.t==="Unit").map(c=>c.hp||0));
-  $("#radarBox").innerHTML=radarSVG([
-    (ch.pow||0)/mx, (ch.hp||0)/mh*.85, 1-(ch.cost/8), .55, (ch.hp||0)/mh
-  ],142,FACTION[ch.a].c);
-
-  /* team avatars from the deck */
-  const seen=[...new Set(P.deck)].slice(0,3);
-  $("#teamAv").innerHTML=seen.map(()=>`<div class="av"><img src="cards/liora-sm.jpg" alt=""></div>`).join("");
-
-  /* wire navigation */
+  /* wiring */
   $$("[data-scr]",r).forEach(b=>b.addEventListener("click",()=>{
-    const k=b.dataset.scr; if(!k)return;
-    $$(".rail-btn",r).forEach(x=>x.classList.remove("on"));
-    b.classList.contains("rail-btn")&&b.classList.add("on");
+    const k=b.dataset.scr;if(!k)return;
+    $$(".rh",r).forEach(x=>x.classList.remove("on"));
+    if(b.classList.contains("rh"))b.classList.add("on");
     openScreen(k);
+  }));
+  $$("[data-home]",r).forEach(b=>b.addEventListener("click",()=>{
+    closeScreens();
+    $$(".rh",r).forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
   }));
   $$("[data-settings]",r).forEach(b=>b.addEventListener("click",openSettings));
   $$("[data-play]",r).forEach(b=>b.addEventListener("click",enterBattle));
-  $(".rail-btn",r).addEventListener("click",()=>{ closeScreens();
-    $$(".rail-btn",r).forEach(x=>x.classList.remove("on"));
-    $(".rail-btn",r).classList.add("on"); });
 
-  /* animate bars in, unless motion is reduced */
+  /* let the rules draw themselves in */
   requestAnimationFrame(()=>{
-    $$("[data-w]",r).forEach(i=>{
-      if(P.reduced){i.style.transition="none"}
-      i.style.width=i.dataset.w+"%";
-    });
+    $$("[data-w]",r).forEach(i=>{if(P.reduced)i.style.transition="none";
+      i.style.width=i.dataset.w+"%"});
+    $$("[data-h]",r).forEach(i=>{if(P.reduced)i.style.transition="none";
+      i.style.height=Math.max(2,+i.dataset.h)+"%"});
   });
-  if(P.reduced)$$(".radar-poly,.donut-arc",r).forEach(e=>e.style.animation="none");
 
-  startCountdown();
   awaken(ch.a);
   P.seenHall=true;
 }
-
-/* live countdown ------------------------------------------- */
-let CD=null;
-function startCountdown(){
-  clearInterval(CD);
-  let t=5025;                     // 01:23:45
-  const el=()=>document.getElementById("cdown");
-  const tick=()=>{
-    const e=el(); if(!e){clearInterval(CD);return}
-    const d=Math.floor(t/86400), h=Math.floor(t%86400/3600),
-          m=Math.floor(t%3600/60), s=t%60;
-    const p=n=>String(n).padStart(2,"0");
-    e.textContent=`${p(d)}:${p(h)}:${p(m)}:${p(s)}`;
-    if(t>0)t--;
-  };
-  tick();
-  CD=setInterval(tick,1000);
-}
-function buildLobby(){ buildHall() }
 
 function buildLobby(){ buildHall() }
 
@@ -2560,7 +3139,7 @@ SCREEN.shop=el=>{
       ${[["Ember-Touched","Liora, Silverleaf Warden","liora",120],["Moonlit","Nerith, Tidecaller","merfolktide",120],["Ancient","Oakfather Mourn","treeelder",90],["Corrupted","The Hollow King","undeadking",150]]
         .map(([sk,nm,id,pr])=>`
         <div class="wares" style="--wc:${ASP[BY[id].a].glow}" onclick="buySkin('${id}','${sk}',${pr})">
-          <div class="vis"><div style="width:96px;aspect-ratio:853/1280;border:1px solid rgba(198,166,100,.4);border-radius:3px;overflow:hidden;position:relative"><div style="position:absolute;inset:0;filter:${SKINFX[sk]||''};background:url(cards/liora-sm.jpg) center/cover no-repeat"></div></div></div>
+          <div class="vis"><div class="f-${BY[id].a}" style="width:96px;aspect-ratio:853/1280;border:1px solid var(--e-rule);overflow:hidden;position:relative"><div style="position:absolute;inset:0;filter:${SKINFX[sk]||''};background:linear-gradient(180deg,var(--e-ink),var(--e-void))">${figure(BY[id])}</div></div></div>
           <div style="font-size:16px;color:rgba(216,205,184,.9)">${sk}</div>
           <div class="fn2" style="margin-top:5px">${nm}</div>
           <div class="price"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8083a8" stroke-width="1.2"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6z"/></svg>
@@ -2596,13 +3175,8 @@ SCREEN.skins=el=>{
   const render=sk=>{
     prev.innerHTML="";
     const c=cardEl(ch,{noclick:true});
-    c.style.filter="none";
-    if(sk&&sk!=="Original"){
-      const art=c.querySelector(".art");
-      if(art)art.style.filter=SKINFX[sk]||"";
-      const band=c.querySelector(".band .b");
-      if(band)band.innerHTML=`${ch.race}<i>✦</i>${sk}`;
-    }
+    const fig=c.querySelector(".c-fig");
+    if(fig)fig.style.filter=(sk&&sk!=="Original")?(SKINFX[sk]||""):"";
     prev.appendChild(c);
   };
   render(P.skin[ch.id]||"Original");
@@ -2610,7 +3184,7 @@ SCREEN.skins=el=>{
   list.forEach(sk=>{
     const owned=sk==="Original"||P.skin[ch.id]===sk;
     const d=document.createElement("div");d.className="skin"+((P.skin[ch.id]||"Original")===sk?" on":"");
-    d.innerHTML=`<div style="position:absolute;inset:0;filter:${SKINFX[sk]||""};background:url(cards/liora-sm.jpg) center/cover no-repeat"></div>`+`<div class="tag">${sk}</div>`+(owned?"":`<div class="lk">LOCKED</div>`);
+    d.innerHTML=`<div class="f-${ch.a}" style="position:absolute;inset:0;filter:${SKINFX[sk]||""};background:linear-gradient(180deg,var(--e-ink),var(--e-void))">${figure(ch)}</div>`+`<div class="tag">${sk}</div>`+(owned?"":`<div class="lk">LOCKED</div>`);
     d.addEventListener("click",()=>{
       if(!owned)return toast(sk+" is not yet recovered. Seek it at the merchant's table.");
       P.skin[ch.id]=sk==="Original"?null:sk;
@@ -2715,7 +3289,7 @@ function inspect(card){
       <p class="li" style="margin-top:20px;font-size:15px">${card.fl}</p>
       <details class="deep"><summary>Read the field record</summary><div class="b">${card.lore}</div></details>
       <div class="fn2" style="margin-top:22px">Appearance</div>
-      <div class="skins">${skins.map(sk=>`<div class="skin ${(P.skin[card.id]||"Original")===sk?"on":""}" data-sk="${sk}"><div style="position:absolute;inset:0;filter:${SKINFX[sk]||""};background:url(cards/liora-sm.jpg) center/cover no-repeat"></div><div class="tag">${sk}</div>${sk==="Original"||P.skin[card.id]===sk?"":`<div class="lk">LOCKED</div>`}</div>`).join("")}</div>
+      <div class="skins">${skins.map(sk=>`<div class="skin f-${card.a} ${(P.skin[card.id]||"Original")===sk?"on":""}" data-sk="${sk}"><div style="position:absolute;inset:0;filter:${SKINFX[sk]||""};background:linear-gradient(180deg,var(--e-ink),var(--e-void))">${figure(card)}</div><div class="tag">${sk}</div>${sk==="Original"||P.skin[card.id]===sk?"":`<div class="lk">LOCKED</div>`}</div>`).join("")}</div>
       <div class="iacts">
         <button class="rite" onclick="closeInsp()">Return it</button>
         ${P.owned[card.id]>0?`<button class="rite grave" onclick="P.champ='${card.id}';buildLobby();closeInsp();toast('${card.n} now stands as your champion.')">Set as champion</button>
@@ -2735,179 +3309,408 @@ function inspect(card){
 }
 function closeInsp(){$("#insp").classList.remove("live")}
 
-/* ---------- battle stub ---------- */
+/* ============================================================
+   THE TRIAL — a real combat engine.
+
+   Rules, stated once:
+     · Both recorders draw from their own bound deck.
+     · Aether rises by one each round, to a ceiling of seven,
+       and refills at the start of your turn.
+     · A unit costs its Aether to summon and arrives spent;
+       it may strike from the following turn.
+     · Striking a unit is mutual: both deal their Power to the
+       other's Health. A unit reduced to nothing is buried.
+     · A strike against an empty rank scores a Covenant Mark.
+     · Three marks end the trial. A deck run dry ends it too.
+     · Spells and relics resolve on arrival and are spent.
+   The tutorial is this same engine with a narrator and a
+   stacked opening hand, so nothing taught is a lie.
+   ============================================================ */
+const B={};
+const B_MAX_AETHER=7, B_HAND=6, B_MARKS=3, B_RANK=4;
+
+function bShuffle(a){
+  const d=a.slice();
+  for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}
+  return d;
+}
+/* a side of the table */
+function bSide(deckIds,name,isYou){
+  return {name,isYou,deck:bShuffle(deckIds),hand:[],rank:[],aether:1,max:1,marks:0,fatigue:0};
+}
+/* the opposing recorder brings a legal deck of her own */
+function bFoeDeck(){
+  const pool=CARDS.filter(c=>c.t==="Unit");
+  const out=[];
+  while(out.length<30){
+    const c=pool[Math.floor(Math.random()*pool.length)];
+    if(out.filter(x=>x===c.id).length<3)out.push(c.id);
+  }
+  return out;
+}
+function bDraw(s,n=1){
+  for(let i=0;i<n;i++){
+    if(!s.deck.length){s.fatigue++;continue}
+    if(s.hand.length>=B_HAND){s.deck.shift();continue}
+    s.hand.push(s.deck.shift());
+  }
+}
+function bUnit(id){
+  const c=BY[id];
+  return {id,uid:(B.uid=(B.uid||0)+1),pow:c.pow||0,hp:c.hp||1,max:c.hp||1,spent:true};
+}
+
 async function enterBattle(){
   closeScreens();
-  if(!P.tutorialDone) return startTutorial();
+  if(!P.tutorialDone)return startTutorial();
+  startTrial(false);
+}
+async function startTutorial(){ startTrial(true) }
+
+async function startTrial(teaching){
+  await goScene("battle",teaching?"the first trial":"the trial");
   playCue("battle",1600);
-  const ch=BY[P.champ]||CARDS[0];
-  $("#fade").style.background=`radial-gradient(circle at 50% 60%, ${ASP[ch.a].glow}, #000 62%)`;
-  $("#fade").classList.add("on");
-  await wait(P.reduced?200:1400);
-  $("#fade").style.background="#000";
-  playCue("hall");
-  await wait(200);$("#fade").classList.remove("on");
-  // the reward is a ceremony, never a toast
-  showSpoils({won:true});
+
+  const myDeck=(P.deck&&P.deck.length>=10)?P.deck.slice():buildStarterDeck(PACKS[0]);
+  B.you=bSide(myDeck,P.name||"Recorder",true);
+  B.foe=bSide(bFoeDeck(),"Hesper of the Ninth Vigil",false);
+  B.turn="you"; B.round=1; B.busy=false; B.over=false;
+  B.sel=null; B.log=[]; B.teaching=!!teaching; B.step=0;
+
+  /* a taught opening is stacked so the lesson always lands */
+  if(teaching){
+    const cheap=myDeck.filter(id=>BY[id].cost<=2&&BY[id].t==="Unit");
+    const lead=cheap[0]||myDeck[0];
+    const leadAt=B.you.deck.indexOf(lead);
+    if(leadAt>-1)B.you.deck.splice(leadAt,1);
+    B.you.deck.unshift(lead);
+  }
+  bDraw(B.you,3); bDraw(B.foe,3);
+  B.you.aether=B.you.max=1;
+
+  renderBattle();
+  if(teaching)tellStep();
+  else bLog("The trial begins. Aether rises with each round.");
 }
 
-/* ============================================================
-   TUTORIAL BATTLE
-   A scripted first match. Teaches: Aether, playing a card,
-   attacking, Covenant Marks, and winning. Cannot be lost.
-   ============================================================ */
-const T={};
-async function startTutorial(){
-  await goScene("tutorial","the first trial");
-  playCue("battle",1600);
-  T.aether=1; T.max=1; T.marks=0; T.foeMarks=0; T.step=0; T.busy=false;
-  T.you=null; T.foe=null; T.hand=[];
-  T.foeHp=6; T.foeMax=6;
-  renderTut();
-  runTutStep();
-}
-const TUT_STEPS=[
-  {k:"The trial",t:"Two recorders. Three marks decide it.<br>Strike down what stands opposite you, three times, and the covenant is yours.",
-   hint:"Click anywhere to continue",wait:"click"},
-  {k:"Aether",t:"Everything costs <b>Aether</b> — the light at the bottom of your screen.<br>It grows by one each turn. Spend it to bring records into the world.",
-   hint:"Click to continue",wait:"click"},
-  {k:"Summon",t:"A card is a doorway. Play one and the creature steps through it.<br>Choose <b>Silverleaf Scout</b> from your hand.",
-   hint:"Click the card",wait:"play"},
-  {k:"Strike",t:"Your Eidolon stands. Now use it.<br>Click your creature to strike the one opposite.",
-   hint:"Click your Eidolon",wait:"attack"},
-  {k:"The mark",t:"When the opposing Eidolon falls, you take a <b>Covenant Mark</b>.<br>Three marks end the trial.",
-   hint:"Click to continue",wait:"click"},
-  {k:"Finish it",t:"One more strike. Take the trial.",
-   hint:"Click your Eidolon",wait:"finish"}
+/* ---------- the narrator, for the first trial only ---------- */
+const B_STEPS=[
+  {k:"The trial",t:"Two recorders, one table. <b>Three Covenant Marks</b> decide it.<br>Strike past what stands opposite you three times and the trial is yours.",hint:"Click to continue"},
+  {k:"Aether",t:"The struck marks at the left are <b>Aether</b>. They rise by one each round and refill on your turn.<br>Every record costs Aether to summon.",hint:"Click to continue"},
+  {k:"Summon",t:"A card is a doorway. Choose one you can afford from your hand — the affordable ones are ruled in green.<br>It arrives <b>spent</b>, and may strike from your next turn.",hint:"Play a record from your hand"},
+  {k:"Pass the round",t:"The new arrival must settle into the field. Pass the round now.<br>Hesper will answer, your Aether will rise, and the unit will be ready.",hint:"Click Pass the round"},
+  {k:"The strike",t:"Select one of your standing units, then the unit opposite. Both deal their <b>Power</b> to the other's <b>Health</b>.<br>Strike an empty rank and you score a <b>Mark</b>.",hint:"Select a unit, then a target"},
+  {k:"Yours to finish",t:"Pass when you have nothing left to spend. Hesper will answer, and the round will turn.<br>Three marks. Take them.",hint:"Click to begin"}
 ];
-function renderTut(){
-  const r=$("#s-tutorial .tut");
-  const foeCard=BY.gobswarm, youCard=T.you?BY[T.you.id]:null;
-  r.innerHTML=`
-  <div class="tut-foe">
-    <div style="width:34px;height:34px;opacity:.6">${mark(4242)}</div>
-    <div class="tut-who"><div class="n">Hesper of the Ninth Vigil</div>
-      <div class="fn2" style="margin-top:4px">the one who keeps the door</div></div>
-    <div class="tut-marks" style="margin-left:14px">${[0,1,2].map(i=>`<div class="tmk ${i<T.foeMarks?'lit':''}"></div>`).join("")}</div>
-    <button class="rite tut-skip" onclick="skipTutorial()" style="padding:9px 16px;letter-spacing:.2em">Skip</button>
-  </div>
+function tellStep(){
+  if(!B.teaching)return;
+  const st=B_STEPS[B.step];
+  if(!st)return bSay(false);
+  const s=$("#btSay");
+  if(!s)return;
+  s.querySelector(".k").innerHTML=st.k;
+  s.querySelector(".t").innerHTML=st.t;
+  s.querySelector(".hint").innerHTML=st.hint;
+  s.classList.add("on");
+  /* the reading steps advance on a click; the doing steps wait for the deed */
+  if(B.step<=1||B.step===5){
+    const once=()=>{document.removeEventListener("click",once);
+      bSay(false);B.step++;setTimeout(tellStep,420)};
+    setTimeout(()=>document.addEventListener("click",once),380);
+  }
+}
+function bSay(on){const s=$("#btSay");if(s)s.classList.toggle("on",!!on)}
+function bLog(m){
+  B.log.unshift(m);B.log=B.log.slice(0,4);
+  const l=$("#btLog");
+  if(l)l.innerHTML=B.log.map((x,i)=>`<div style="opacity:${(1-i*.26).toFixed(2)}">${x}</div>`).join("");
+}
 
-  <div class="tut-field">
-    <div class="tut-line"></div>
-    <div class="tut-side">
-      <div class="tut-slot ${T.foeHp<=0?'dead':''}" id="foeSlot">
-        <div class="hpnum">${Math.max(0,T.foeHp)} / ${T.foeMax}</div>
-        ${cardEl(foeCard,{noclick:true}).outerHTML}
-        <div class="hpbar"><i style="width:${Math.max(0,T.foeHp/T.foeMax*100)}%"></i></div>
+/* ---------- drawing the table ---------- */
+function renderBattle(){
+  const r=$("#btRoot");
+  if(!r)return;
+  const Y=B.you,F=B.foe;
+  const rank=(side,who)=>{
+    let out="";
+    for(let i=0;i<B_RANK;i++){
+      const u=side.rank[i];
+      if(!u){out+=`<div class="bt-empty">Empty</div>`;continue}
+      const c=BY[u.id],pct=Math.max(0,u.hp/u.max*100);
+      const cls=pct<=33?"low":pct<=66?"hurt":"";
+      const sel=(B.sel&&B.sel===u.uid)?" sel":"";
+      const canAct=who==="you"&&!u.spent&&B.turn==="you"&&!B.over;
+      const isTgt=B.sel&&who==="foe";
+      out+=`<div class="bt-unit${sel}${canAct?" ready":""}${who==="you"&&u.spent?" spent":""}${isTgt?" target":""}"
+              data-who="${who}" data-uid="${u.uid}">
+              <div class="fig"><span class="p">${u.pow}</span><span>${u.hp}</span></div>
+              ${cardEl(c,{noclick:true}).outerHTML}
+              <div class="hp"><i class="${cls}" style="width:${pct}%"></i></div>
+            </div>`;
+    }
+    return out;
+  };
+  const marks=n=>[0,1,2].map(i=>`<i class="${i<n?"lit":""}"></i>`).join("");
+
+  r.innerHTML=`
+    <div class="bt-who">
+      <div class="mk">${mark(4242)}</div>
+      <div><div class="nm">${F.name}</div><div class="sub">she keeps the door</div></div>
+      <div class="bt-marks">${marks(F.marks)}</div>
+      <div class="bt-stats">
+        <div><div class="k">Hand</div><div class="v">${F.hand.length}</div></div>
+        <div><div class="k">Deck</div><div class="v">${F.deck.length}</div></div>
+        <button class="e-act quiet" id="btQuit" style="margin-left:8px">Withdraw</button>
       </div>
     </div>
-    <div style="height:0"></div>
-    <div class="tut-side">
-      ${T.you?`<div class="tut-slot" id="youSlot">
-        <div class="hpnum">${T.you.hp} / ${T.you.max}</div>
-        ${cardEl(youCard,{noclick:true}).outerHTML}
-        <div class="hpbar"><i style="width:100%"></i></div></div>`:
-        `<div class="tut-slot" style="border:1px dashed rgba(216,205,184,.12)"></div>`}
-    </div>
-    <div class="tut-say" id="tutSay"><div class="box"><div class="k"></div><div class="t"></div><div class="hint"></div></div></div>
-  </div>
 
-  <div>
-    <div class="tut-you">
-      <div class="tut-aether">${Array.from({length:7},(_,i)=>`<div class="tae ${i<T.aether?'full':''}"></div>`).join("")}</div>
-      <div class="fn2" style="margin-left:10px">Aether ${T.aether}</div>
-      <div class="tut-marks" style="margin-left:18px">${[0,1,2].map(i=>`<div class="tmk ${i<T.marks?'lit':''}"></div>`).join("")}</div>
-      <div class="tut-who" style="margin-left:12px"><div class="n">${P.name||"Recorder"}</div></div>
-      <div style="width:34px;height:34px;opacity:.75">${mark(P.seed,{ember:1,progress:T.marks/3})}</div>
+    <div class="bt-field">
+      <div class="bt-rank" id="foeRank">${rank(F,"foe")}</div>
+      <div class="bt-rule"><span class="turn">Round ${B.round} · ${B.over?"the trial is closed":(B.turn==="you"?"your move":"Hesper considers")}</span></div>
+      <div class="bt-rank" id="youRank">${rank(Y,"you")}</div>
     </div>
-    <div class="tut-hand" id="tutHand"></div>
-  </div>`;
-  // hand
-  const h=$("#tutHand");
-  if(!T.you){
-    const c=BY.elfscout;
+
+    <div class="bt-who">
+      <div class="mk">${mark(P.seed||101,{ember:1,progress:Y.marks/B_MARKS})}</div>
+      <div><div class="nm">${Y.name}</div><div class="sub">recorder</div></div>
+      <div class="bt-marks">${marks(Y.marks)}</div>
+      <div class="bt-stats">
+        <div><div class="k">Deck</div><div class="v">${Y.deck.length}</div></div>
+      </div>
+    </div>
+
+    <div class="bt-bar">
+      <div class="bt-aether" title="Aether">
+        ${Array.from({length:B_MAX_AETHER},(_,i)=>`<i class="${i<Y.aether?"full":""}"></i>`).join("")}
+      </div>
+      <div class="bt-hand" id="btHand"></div>
+      <div class="bt-acts">
+        <button class="e-act" id="btPass">${B.turn==="you"?"Pass the round":"…"}</button>
+      </div>
+    </div>
+
+    <div class="bt-log" id="btLog"></div>
+    <div class="bt-say" id="btSay"><div class="k"></div><div class="t"></div><div class="hint"></div></div>`;
+
+  /* the hand */
+  const h=$("#btHand");
+  Y.hand.forEach((id,i)=>{
+    const c=BY[id];
+    const can=c.cost<=Y.aether&&B.turn==="you"&&!B.over&&
+      (c.t!=="Unit"||Y.rank.length<B_RANK);
     const d=document.createElement("div");
-    d.className="tut-card";
-    d.innerHTML=cardEl(c,{noclick:true}).outerHTML;
-    d.onclick=()=>tutPlay();
+    d.className="bt-card"+(can?" playable":" dear");
+    d.dataset.i=i;
+    d.appendChild(cardEl(c,{noclick:true}));
+    d.addEventListener("click",()=>{ if(can)playFromHand(i); else
+      toast(c.cost>Y.aether?"Not enough Aether.":"The rank is full."); });
     h.appendChild(d);
+  });
+
+  /* wiring */
+  $$(".bt-unit",r).forEach(u=>u.addEventListener("click",()=>onUnit(u.dataset.who,+u.dataset.uid)));
+  const q=$("#btQuit"); if(q)q.onclick=()=>endTrial(false,true);
+  const pa=$("#btPass"); if(pa)pa.onclick=()=>{ if(B.turn==="you"&&!B.busy&&!B.over)endYourTurn() };
+  bLog.last&&0;
+  const l=$("#btLog");
+  if(l)l.innerHTML=B.log.map((x,i)=>`<div style="opacity:${(1-i*.26).toFixed(2)}">${x}</div>`).join("");
+}
+
+/* ---------- summoning ---------- */
+async function playFromHand(i){
+  if(B.busy||B.over||B.turn!=="you")return;
+  const Y=B.you,id=Y.hand[i],c=BY[id];
+  if(!c||c.cost>Y.aether)return;
+  B.busy=true;
+  Y.aether-=c.cost;
+  Y.hand.splice(i,1);
+
+  if(c.t==="Unit"){
+    Y.rank.push(bUnit(id));
+    bLog(`${c.n} steps through.`);
+  }else{
+    /* spells and relics resolve at once, in the plainest reading of their kind */
+    resolveWorking(c,Y,B.foe);
   }
-  // wire the field
-  const ys=$("#youSlot"); if(ys)ys.onclick=()=>tutAttack();
-  const fs=$("#foeSlot"); if(fs)fs.onclick=()=>tutAttack();
+  if(B.teaching&&B.step===2){bSay(false);B.step++;setTimeout(tellStep,600)}
+  renderBattle();
+  await wait(P.reduced?60:220);
+  B.busy=false;
+  checkOver();
 }
-function tutSay(step){
-  const s=$("#tutSay");
-  s.querySelector(".k").innerHTML=step.k;
-  s.querySelector(".t").innerHTML=step.t;
-  s.querySelector(".hint").innerHTML=step.hint;
-  s.classList.add("on");
+/* a working: spells strike, relics mend or draw */
+function resolveWorking(c,me,them){
+  const hurt=them.rank.filter(u=>u.hp>0);
+  if(c.t==="Spell"&&hurt.length){
+    const t=hurt.sort((a,b)=>a.hp-b.hp)[0];
+    const dmg=2+Math.floor(c.cost/2);
+    t.hp-=dmg;
+    bLog(`${c.n} deals ${dmg}.`);
+    if(t.hp<=0){them.rank=them.rank.filter(u=>u!==t);bLog(`It is buried.`)}
+  }else{
+    bDraw(me,1);
+    me.rank.forEach(u=>{u.hp=Math.min(u.max,u.hp+1)});
+    bLog(`${c.n} steadies the rank.`);
+  }
 }
-function tutHide(){$("#tutSay").classList.remove("on")}
-function runTutStep(){
-  const st=TUT_STEPS[T.step];
-  if(!st)return;
-  tutSay(st);
-  // mark what must be clicked
-  setTimeout(()=>{
-    $$(".tut-target").forEach(e=>e.classList.remove("tut-target"));
-    if(st.wait==="play"){const c=$(".tut-card"); if(c){c.classList.add("tut-target"); tutHide();}}
-    if(st.wait==="attack"||st.wait==="finish"){const y=$("#youSlot"); if(y){y.classList.add("tut-target"); tutHide();}}
-    if(st.wait==="click"){
-      const once=()=>{document.removeEventListener("click",once);tutHide();T.step++;setTimeout(runTutStep,500)};
-      setTimeout(()=>document.addEventListener("click",once),400);
+
+/* ---------- striking ---------- */
+function onUnit(who,uid){
+  if(B.busy||B.over||B.turn!=="you")return;
+  const Y=B.you,F=B.foe;
+  if(who==="you"){
+    const u=Y.rank.find(x=>x.uid===uid);
+    if(!u)return;
+    if(u.spent)return toast("That one has already moved.");
+    B.sel=(B.sel===uid)?null:uid;
+    return renderBattle();
+  }
+  if(!B.sel)return toast("Select one of your own first.");
+  strike(B.sel,uid);
+}
+async function strike(myUid,foeUid){
+  const Y=B.you,F=B.foe;
+  const a=Y.rank.find(x=>x.uid===myUid);
+  const d=F.rank.find(x=>x.uid===foeUid);
+  if(!a||!d)return;
+  B.busy=true;B.sel=null;
+  a.spent=true;
+  d.hp-=a.pow; a.hp-=d.pow;
+  bLog(`${BY[a.id].n} strikes ${BY[d.id].n}.`);
+  popDamage("foe",foeUid,a.pow);
+  if(d.pow)popDamage("you",myUid,d.pow);
+  await wait(P.reduced?80:420);
+  if(d.hp<=0){F.rank=F.rank.filter(x=>x!==d);bLog(`${BY[d.id].n} is buried.`)}
+  if(a.hp<=0){Y.rank=Y.rank.filter(x=>x!==a);bLog(`${BY[a.id].n} is buried.`)}
+  if(B.teaching&&B.step===4){bSay(false);B.step++;setTimeout(tellStep,600)}
+  renderBattle();
+  B.busy=false;
+  checkOver();
+}
+/* striking an empty rank takes a mark */
+async function strikeOpen(side,other,uid){
+  const a=side.rank.find(x=>x.uid===uid);
+  if(!a)return;
+  a.spent=true;
+  side.marks++;
+  bLog(`${BY[a.id].n} passes unopposed. A mark is struck.`);
+  renderBattle();
+  await wait(P.reduced?80:520);
+  checkOver();
+}
+function popDamage(who,uid,n){
+  const el=$(`.bt-unit[data-who="${who}"][data-uid="${uid}"]`);
+  if(!el||!n)return;
+  el.classList.add("hit");
+  const p=document.createElement("div");
+  p.className="bt-pop";p.textContent="−"+n;
+  el.appendChild(p);
+  setTimeout(()=>p.remove(),1000);
+}
+
+/* ---------- the turn ---------- */
+async function endYourTurn(){
+  if(B.busy||B.over)return;
+  B.busy=true;B.sel=null;
+  /* every ready unit that faces nothing takes its mark */
+  const open=B.you.rank.filter(u=>!u.spent);
+  if(open.length&&!B.foe.rank.length){
+    for(const u of open){
+      if(B.over)break;
+      await strikeOpen(B.you,B.foe,u.uid);
     }
-  }, st.wait==="click"?0:1800);
-}
-function tutPlay(){
-  if(T.busy||T.you)return;
-  T.busy=true;
-  T.aether=Math.max(0,T.aether-1);
-  T.you={id:"elfscout",hp:5,max:5};
-  tutHide();
-  renderTut();
-  T.busy=false;
-  T.step++;
-  setTimeout(runTutStep,700);
-}
-async function tutAttack(){
-  if(T.busy||!T.you)return;
-  const st=TUT_STEPS[T.step];
-  if(!st||(st.wait!=="attack"&&st.wait!=="finish"))return;
-  T.busy=true; tutHide();
-  $$(".tut-target").forEach(e=>e.classList.remove("tut-target"));
-  const fs=$("#foeSlot");
-  fs.classList.add("hurt");
-  T.foeHp-=st.wait==="finish"?6:3;
-  await wait(500);
-  renderTut();
-  if(T.foeHp<=0){
-    T.marks=3;
-    renderTut();
-    await wait(900);
-    T.busy=false;
-    return endTutorial();
+    if(B.over){B.busy=false;return}
   }
-  T.max++; T.aether=T.max;
-  renderTut();
-  await wait(700);
-  T.busy=false;
-  T.step++;
-  runTutStep();
+  if(B.teaching&&B.step===3){bSay(false)}
+  B.turn="foe";
+  renderBattle();
+  await wait(P.reduced?150:700);
+  await foeTurn();
 }
-function skipTutorial(){ endTutorial(true) }
-async function endTutorial(skipped){
-  P.tutorialDone=true;
-  saveGame();
+
+/* the opposing recorder: plain, readable judgement */
+async function foeTurn(){
+  const F=B.foe,Y=B.you;
+  if(B.over)return;
+  F.max=Math.min(B_MAX_AETHER,F.max+1);F.aether=F.max;
+  bDraw(F,1);
+  renderBattle();
+  await wait(P.reduced?100:520);
+
+  /* 1. summon what it can afford, dearest first */
+  let guard=0;
+  while(guard++<6&&!B.over){
+    const play=F.hand
+      .map((id,i)=>({id,i,c:BY[id]}))
+      .filter(x=>x.c.cost<=F.aether&&(x.c.t!=="Unit"||F.rank.length<B_RANK))
+      .sort((a,b)=>b.c.cost-a.c.cost)[0];
+    if(!play)break;
+    F.aether-=play.c.cost;
+    F.hand.splice(play.i,1);
+    if(play.c.t==="Unit"){F.rank.push(bUnit(play.id));bLog(`Hesper summons ${play.c.n}.`)}
+    else resolveWorking(play.c,F,Y);
+    renderBattle();
+    await wait(P.reduced?60:380);
+  }
+
+  /* 2. strike: take the kill it can afford, else trade up, else take a mark */
+  for(const u of F.rank.filter(x=>!x.spent)){
+    if(B.over)break;
+    if(!Y.rank.length){ await strikeOpen(F,Y,u.uid); if(B.over)return; continue }
+    const kill=Y.rank.filter(t=>t.hp<=u.pow).sort((a,b)=>b.pow-a.pow)[0];
+    const target=kill||Y.rank.slice().sort((a,b)=>b.pow-a.pow)[0];
+    u.spent=true;
+    target.hp-=u.pow; u.hp-=target.pow;
+    bLog(`${BY[u.id].n} strikes ${BY[target.id].n}.`);
+    popDamage("you",target.uid,u.pow);
+    await wait(P.reduced?70:400);
+    if(target.hp<=0){Y.rank=Y.rank.filter(x=>x!==target);bLog(`${BY[target.id].n} is buried.`)}
+    if(u.hp<=0){F.rank=F.rank.filter(x=>x!==u);bLog(`${BY[u.id].n} is buried.`)}
+    renderBattle();
+    if(checkOver())return;
+  }
+
+  /* 3. the round turns back */
+  F.rank.forEach(u=>u.spent=false);
+  B.round++;
+  B.turn="you";
+  Y.max=Math.min(B_MAX_AETHER,Y.max+1);Y.aether=Y.max;
+  Y.rank.forEach(u=>u.spent=false);
+  bDraw(Y,1);
+  renderBattle();
+  B.busy=false;
+  if(B.teaching&&B.step===3){B.step++;setTimeout(tellStep,500)}
+  checkOver();
+}
+
+/* ---------- the ending ---------- */
+function checkOver(){
+  if(B.over)return true;
+  if(B.you.marks>=B_MARKS)  {endTrial(true); return true}
+  if(B.foe.marks>=B_MARKS)  {endTrial(false);return true}
+  /* a deck run dry ends it — the one who cannot draw has lost */
+  if(B.you.fatigue>=3)      {endTrial(false);return true}
+  if(B.foe.fatigue>=3)      {endTrial(true); return true}
+  return false;
+}
+async function endTrial(won,withdrew){
+  if(B.over)return;
+  B.over=true;B.busy=true;B.sel=null;
+  renderBattle();
+  await wait(P.reduced?200:900);
+  if(B.teaching){P.tutorialDone=true;saveGame()}
   $("#fade").classList.add("on");
-  await wait(P.reduced?200:1000);
+  await wait(P.reduced?200:900);
   $$(".scene").forEach(s=>s.classList.remove("live"));
   $("#s-lobby").classList.add("live");
   buildHall();
   $("#fade").classList.remove("on");
   playCue("hall");
-  if(!skipped) showSpoils({first:true});
+  if(withdrew){toast("You withdrew. Nothing is written.");return}
+  showSpoils({won,first:B.teaching});
 }
+/* kept so the old skip control still resolves */
+function skipTutorial(){ endTrial(false,true) }
 
 /* ============================================================
    REWARD CEREMONY — the surprise after every battle
@@ -2915,12 +3718,14 @@ async function endTutorial(skipped){
 async function showSpoils(o={}){
   const won=o.won!==false;
   const sp=$("#spoils");
-  const gainXp=o.first?260:220, gainEm=o.first?120:40;
+  const gainXp=won?(o.first?260:220):80;
+  const gainEm=won?(o.first?120:40):0;
+  const recordCount=won?(o.first?3:1):1;
   sp.innerHTML=`<div class="sp-in">
     <div class="sp-verdict">${won?"THE COVENANT REMEMBERS":"THE RECORD CLOSES"}</div>
-    <div class="sp-sub li" style="font-size:15.5px">${o.first
-      ? "Your first trial is written into the ledger. Something was left for you."
-      : "Embers settle. Something was recovered from the ground."}</div>
+    <div class="sp-sub li" style="font-size:15.5px">${won
+      ? (o.first?"Your first trial is written into the ledger. Something was left for you.":"Embers settle. Something was recovered from the ground.")
+      : "The mark was not yours. The ledger keeps the loss, and one record remains."}</div>
     <div class="sp-seal" id="spSeal"><div class="g"></div><div class="b"></div>
       <svg viewBox="0 0 186 254" style="position:absolute;inset:0;width:100%;height:100%">
         <path d="M93 0 V254 M0 127 H186" stroke="rgba(16,11,9,.95)" stroke-width="7" fill="none"/>
@@ -2933,7 +3738,7 @@ async function showSpoils(o={}){
     <div class="sp-gain" id="spGain">
       <div><div class="v num">+${gainEm}</div><div class="k">Embers</div></div>
       <div><div class="v num">+${gainXp}</div><div class="k">Experience</div></div>
-      <div><div class="v num">${o.first?"3":"1"}</div><div class="k">Records found</div></div>
+      <div><div class="v num">${recordCount}</div><div class="k">Records found</div></div>
     </div>
     <div class="sp-level" id="spLevel"></div>
     <div class="sp-go" id="spGo"><button class="rite grave" onclick="closeSpoils()">Return to the hall</button></div>
@@ -2943,7 +3748,7 @@ async function showSpoils(o={}){
     $("#spSeal").classList.add("broken");
     $("#spTap").style.display="none";
     await wait(P.reduced?200:900);
-    const n=o.first?3:1;
+    const n=recordCount;
     const pool=CARDS.filter(c=>["C","R","A"].includes(c.r));
     const got=[];
     for(let i=0;i<n;i++){
@@ -2960,8 +3765,9 @@ async function showSpoils(o={}){
       s.classList.add("up");
     }
     // apply the numbers only now, so the reveal feels earned
-    P.points+=gainEm; P.xp+=gainXp; P.wins++; P.rating+=18;
-    if(P.rank==="Unranked")P.rank="Ash III";
+    P.points+=gainEm; P.xp+=gainXp;
+    if(won){P.wins++;P.rating+=18}else{P.losses++;P.rating=Math.max(0,P.rating-8)}
+    if(won&&P.rank==="Unranked")P.rank="Ash III";
     let levelled=false;
     if(P.xp>=P.xpMax){P.level++;P.xp-=P.xpMax;P.packs++;P.shards+=40;levelled=true}
     await wait(500);
@@ -3009,8 +3815,8 @@ function openSettings(){
   $$(".swt",s).forEach(t=>t.addEventListener("click",()=>{
     t.classList.toggle("on");const k=t.dataset.k;
     if(k==="music"){musicOn(t.classList.contains("on"));return}
-    if(k in P)P[k]=!P[k];
-    document.body.classList.toggle("reduced",!!P.reduced);
+    P[k]=!P[k];
+    applyPrefs();
   }));
   const vs=$("#volSlide",s);
   if(vs)vs.addEventListener("input",()=>setVol(vs.value/100));
@@ -3040,7 +3846,14 @@ document.addEventListener("keydown",e=>{
     closeScreens();
   }
 });
-if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){P.reduced=true;document.body.classList.add("reduced")}
+/* the three reader preferences, applied to the document */
+function applyPrefs(){
+  document.body.classList.toggle("reduced",!!P.reduced);
+  document.body.classList.toggle("hicon",!!P.hicon);
+  document.body.classList.toggle("big",!!P.big);
+}
+if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)P.reduced=true;
+applyPrefs();
 </script>
 </body>
 </html>
